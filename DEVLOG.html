@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جدول گزارش</title>
+    <!-- استفاده از فونت زیبای وزیرمتن از گوگل فونت -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            flex-direction: column; /* تغییر: باعث می‌شود محتویات زیر هم قرار بگیرند */
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            gap: 30px; /* فاصله بین جدول‌ها اگر هر دو فعال باشند */
+        }
+
+        .table-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 800px;
+            box-sizing: border-box; /* برای جلوگیری از به هم ریختگی عرض */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: #4a90e2;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #357abd;
+        }
+
+        tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        td {
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* ستون سوالات (راست) */
+        td:last-child {
+            font-weight: 600;
+            color: #2c3e50;
+            width: 30%;
+            background-color: #fafafa;
+        }
+        
+        /* ستون پاسخ‌ها (چپ) */
+        td:first-child {
+            width: 70%;
+            text-align: right;
+            padding-right: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================== -->
+    <!-- جدول اول (فعال) -->
+    <!-- ============================================== -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>سه شنبه 1405/7/21</th>
+                    <th>سوالات ثابت</th>
+                </tr>
+            </thead>
+            <tbody>
+    <!-- خطای 1 -->
+    <tr>
+        <td>
+            <strong>خطا:</strong> در ساخت DataFrame از پارامتر <code>target_name='alpo'</code> استفاده کردم.<br>
+            <strong>علت:</strong> تابع <code>pd.DataFrame</code> اصلاً پارامتری به نام <code>target_name</code> ندارد.<br>
+            <strong>بررسی:</strong> پیام خطا را خواندم و لیست پارامترهای مجاز <code>pd.DataFrame</code> را چک کردم.<br>
+            <strong>راه‌حل:</strong> پارامتر اضافی را حذف کردم و کد را به <code>df = pd.DataFrame(data.data, columns=data.feature_names)</code> تغییر دادم.<br>
+            <strong>نتیجه:</strong> خطا برطرف شد.
+        </td>
+        <td>TypeError: unexpected keyword argument 'target_name'</td>
+    </tr>
+    
+    <!-- خطای 2 -->
+    <tr>
+        <td>
+            <strong>خطا:</strong> در جمع درصدها با علامت <code>%</code> خطای <code>UFuncTypeError</code> گرفتم.<br>
+            <strong>علت:</strong> یک سری عددی (<code>float64</code>) را مستقیماً با یک رشته (<code>"%"</code>) جمع کرده بودم.<br>
+            <strong>بررسی:</strong> پیام خطا نشان داد که نمی‌توان عدد و متن را جمع کرد.<br>
+            <strong>راه‌حل:</strong> با <code>astype(str)</code> اعداد را به متن تبدیل کردم و سپس <code>%</code> را اضافه کردم.<br>
+            <strong>نتیجه:</strong> خروجی به شکل صحیح (مثل <code>"62.74%"</code>) نمایش داده شد.
+        </td>
+        <td>UFuncTypeError: ufunc 'add' did not contain a loop</td>
+    </tr>
+    
+    <!-- خطای 3 (منطقی) -->
+    <tr>
+        <td>
+            <strong>خطا:</strong> کد <code>if percentages == 1</code> خروجی اشتباه داد.<br>
+            <strong>علت:</strong> به جای مقایسه‌ی خود کلاس‌ها، سری متنی درصدها را با عدد <code>1</code> مقایسه کرده بودم و حلقه نداشت.<br>
+            <strong>بررسی:</strong> متوجه شدم باید روی خود کلاس‌ها (<code>0</code> و <code>1</code>) حلقه بزنم.<br>
+            <strong>راه‌حل:</strong> از حلقه‌ی <code>for</code> روی <code>proportions.items()</code> و شرط <code>if target_class == 0/1</code> استفاده کردم.<br>
+            <strong>نتیجه:</strong> خروجی صحیح (چاپ درصد بیمار و سالم) نمایش داده شد.
+        </td>
+        <td>خطای منطقی در شرط if percentages == 1</td>
+    </tr>
+    
+    <!-- سوالات مفهومی (اختیاری) -->
+    <tr>
+        <td>
+            <strong>سوال:</strong> تفاوت <code>df.info()</code> و <code>df.describe()</code> چیست؟<br>
+            <strong>پاسخ:</strong> <code>info()</code> ساختار (نوع داده، تعداد مقادیر غیرخالی) را نشان می‌دهد و <code>describe()</code> آمار توصیفی (میانگین، انحراف معیار، کمینه، بیشینه) را برای ستون‌های عددی محاسبه می‌کند.
+        </td>
+        <td>مفهوم: تفاوت info() و describe()</td>
+    </tr>
+    
+    <tr>
+        <td>
+            <strong>سوال:</strong> خروجی <code>np.int64(0)</code> یعنی چه؟<br>
+            <strong>پاسخ:</strong> یعنی عدد صفر از نوع صحیح ۶۴ بیتی NumPy. به زبان ساده، یعنی هیچ مقدار گمشده‌ای در آن ستون وجود ندارد.
+        </td>
+        <td>مفهوم: np.int64(0)</td>
+    </tr>
+    
+    <tr>
+        <td>
+            <strong>سوال:</strong> دستور <code>unique()</code> چه کاری می‌کند؟<br>
+            <strong>پاسخ:</strong> مقادیر یکتا (بدون تکرار) را برمی‌گرداند. در پروژه ما، <code>y.unique()</code> نشان می‌دهد که ستون هدف فقط دو مقدار <code>0</code> و <code>1</code> دارد.
+        </td>
+        <td>مفهوم: unique() و sorted(y.unique())</td>
+    </tr>
+</tbody>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- جدول دوم (کامنت شده / غیرفعال) -->
+    <!-- برای فعال کردن، کل تگ‌های <div> و <table> را از داخل کامنت خارج کنید -->
+    <!-- ============================================== -->
+    
+    <!--
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>توضیحات و پاسخ‌ها</th>
+                    <th>سوالات ثابت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>اینجا پاسخ خود را بنویسید...</td>
+                    <td>چه اتفاقی افتاد؟ (خطا)</td>
+                </tr>
+                <tr>
+                    <td>اینجا پاسخ خود را بنویسید...</td>
+                    <td>چه چیزی باعث آن شد؟ (علت احتمالی)</td>
+                </tr>
+                <tr>
+                    <td>اینجا پاسخ خود را بنویسید...</td>
+                    <td>چگونه علت را بررسی کردی؟ (روش بررسی)</td>
+                </tr>
+                <tr>
+                    <td>اینجا پاسخ خود را بنویسید...</td>
+                    <td>چه تغییری انجام دادی؟ (راه‌حل)</td>
+                </tr>
+                <tr>
+                    <td>اینجا پاسخ خود را بنویسید...</td>
+                    <td>آیا مشکل برطرف شد؟ (نتیجه)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    -->
+    
+</body>
+</html>
