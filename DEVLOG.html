@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>جدول گزارش</title>
-    <!-- استفاده از فونت زیبای وزیرمتن از گوگل فونت -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
@@ -12,12 +11,12 @@
             font-family: 'Vazirmatn', sans-serif;
             background-color: #f4f7f6;
             display: flex;
-            flex-direction: column; /* تغییر: باعث می‌شود محتویات زیر هم قرار بگیرند */
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
             margin: 0;
             padding: 20px;
-            gap: 30px; /* فاصله بین جدول‌ها اگر هر دو فعال باشند */
+            gap: 30px;
         }
 
         .table-container {
@@ -27,7 +26,7 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
             width: 100%;
             max-width: 800px;
-            box-sizing: border-box; /* برای جلوگیری از به هم ریختگی عرض */
+            box-sizing: border-box;
         }
 
         table {
@@ -65,7 +64,6 @@
             line-height: 1.6;
         }
 
-        /* ستون سوالات (راست) */
         td:last-child {
             font-weight: 600;
             color: #2c3e50;
@@ -73,7 +71,6 @@
             background-color: #fafafa;
         }
         
-        /* ستون پاسخ‌ها (چپ) */
         td:first-child {
             width: 70%;
             text-align: right;
@@ -84,7 +81,7 @@
 <body>
 
     <!-- ============================================== -->
-    <!-- جدول اول (فعال) -->
+    <!-- جدول اول (سه شنبه) -->
     <!-- ============================================== -->
     <div class="table-container">
         <table>
@@ -95,109 +92,272 @@
                 </tr>
             </thead>
             <tbody>
-    <!-- خطای 1 -->
-    <tr>
-        <td>
-            <strong>خطا:</strong> در ساخت DataFrame از پارامتر <code>target_name='alpo'</code> استفاده کردم.<br>
-            <strong>علت:</strong> تابع <code>pd.DataFrame</code> اصلاً پارامتری به نام <code>target_name</code> ندارد.<br>
-            <strong>بررسی:</strong> پیام خطا را خواندم و لیست پارامترهای مجاز <code>pd.DataFrame</code> را چک کردم.<br>
-            <strong>راه‌حل:</strong> پارامتر اضافی را حذف کردم و کد را به <code>df = pd.DataFrame(data.data, columns=data.feature_names)</code> تغییر دادم.<br>
-            <strong>نتیجه:</strong> خطا برطرف شد.
-        </td>
-        <td>TypeError: unexpected keyword argument 'target_name'</td>
-    </tr>
-    
-    <!-- خطای 2 -->
-    <tr>
-        <td>
-            <strong>خطا:</strong> در جمع درصدها با علامت <code>%</code> خطای <code>UFuncTypeError</code> گرفتم.<br>
-            <strong>علت:</strong> یک سری عددی (<code>float64</code>) را مستقیماً با یک رشته (<code>"%"</code>) جمع کرده بودم.<br>
-            <strong>بررسی:</strong> پیام خطا نشان داد که نمی‌توان عدد و متن را جمع کرد.<br>
-            <strong>راه‌حل:</strong> با <code>astype(str)</code> اعداد را به متن تبدیل کردم و سپس <code>%</code> را اضافه کردم.<br>
-            <strong>نتیجه:</strong> خروجی به شکل صحیح (مثل <code>"62.74%"</code>) نمایش داده شد.
-        </td>
-        <td>UFuncTypeError: ufunc 'add' did not contain a loop</td>
-    </tr>
-    
-    <!-- خطای 3 (منطقی) -->
-    <tr>
-        <td>
-            <strong>خطا:</strong> کد <code>if percentages == 1</code> خروجی اشتباه داد.<br>
-            <strong>علت:</strong> به جای مقایسه‌ی خود کلاس‌ها، سری متنی درصدها را با عدد <code>1</code> مقایسه کرده بودم و حلقه نداشت.<br>
-            <strong>بررسی:</strong> متوجه شدم باید روی خود کلاس‌ها (<code>0</code> و <code>1</code>) حلقه بزنم.<br>
-            <strong>راه‌حل:</strong> از حلقه‌ی <code>for</code> روی <code>proportions.items()</code> و شرط <code>if target_class == 0/1</code> استفاده کردم.<br>
-            <strong>نتیجه:</strong> خروجی صحیح (چاپ درصد بیمار و سالم) نمایش داده شد.
-        </td>
-        <td>خطای منطقی در شرط if percentages == 1</td>
-    </tr>
-    
-    <!-- سوالات مفهومی (اختیاری) -->
-    <tr>
-        <td>
-            <strong>سوال:</strong> تفاوت <code>df.info()</code> و <code>df.describe()</code> چیست؟<br>
-            <strong>پاسخ:</strong> <code>info()</code> ساختار (نوع داده، تعداد مقادیر غیرخالی) را نشان می‌دهد و <code>describe()</code> آمار توصیفی (میانگین، انحراف معیار، کمینه، بیشینه) را برای ستون‌های عددی محاسبه می‌کند.
-        </td>
-        <td>مفهوم: تفاوت info() و describe()</td>
-    </tr>
-    
-    <tr>
-        <td>
-            <strong>سوال:</strong> خروجی <code>np.int64(0)</code> یعنی چه؟<br>
-            <strong>پاسخ:</strong> یعنی عدد صفر از نوع صحیح ۶۴ بیتی NumPy. به زبان ساده، یعنی هیچ مقدار گمشده‌ای در آن ستون وجود ندارد.
-        </td>
-        <td>مفهوم: np.int64(0)</td>
-    </tr>
-    
-    <tr>
-        <td>
-            <strong>سوال:</strong> دستور <code>unique()</code> چه کاری می‌کند؟<br>
-            <strong>پاسخ:</strong> مقادیر یکتا (بدون تکرار) را برمی‌گرداند. در پروژه ما، <code>y.unique()</code> نشان می‌دهد که ستون هدف فقط دو مقدار <code>0</code> و <code>1</code> دارد.
-        </td>
-        <td>مفهوم: unique() و sorted(y.unique())</td>
-    </tr>
-</tbody>
-    </div>
-
-
-    <!-- ============================================== -->
-    <!-- جدول دوم (کامنت شده / غیرفعال) -->
-    <!-- برای فعال کردن، کل تگ‌های <div> و <table> را از داخل کامنت خارج کنید -->
-    <!-- ============================================== -->
-    
-    <!--
-    <div class="table-container">
-        <table>
-            <thead>
                 <tr>
-                    <th>توضیحات و پاسخ‌ها</th>
-                    <th>سوالات ثابت</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>اینجا پاسخ خود را بنویسید...</td>
-                    <td>چه اتفاقی افتاد؟ (خطا)</td>
+                    <td>
+                        <strong>خطا:</strong> در ساخت DataFrame از پارامتر <code>target_name='alpo'</code> استفاده کردم.<br>
+                        <strong>علت:</strong> تابع <code>pd.DataFrame</code> اصلاً پارامتری به نام <code>target_name</code> ندارد.<br>
+                        <strong>بررسی:</strong> پیام خطا را خواندم و لیست پارامترهای مجاز <code>pd.DataFrame</code> را چک کردم.<br>
+                        <strong>راه‌حل:</strong> پارامتر اضافی را حذف کردم و کد را به <code>df = pd.DataFrame(data.data, columns=data.feature_names)</code> تغییر دادم.<br>
+                        <strong>نتیجه:</strong> خطا برطرف شد.
+                    </td>
+                    <td>TypeError: unexpected keyword argument 'target_name'</td>
                 </tr>
                 <tr>
-                    <td>اینجا پاسخ خود را بنویسید...</td>
-                    <td>چه چیزی باعث آن شد؟ (علت احتمالی)</td>
+                    <td>
+                        <strong>خطا:</strong> در جمع درصدها با علامت <code>%</code> خطای <code>UFuncTypeError</code> گرفتم.<br>
+                        <strong>علت:</strong> یک سری عددی (<code>float64</code>) را مستقیماً با یک رشته (<code>"%"</code>) جمع کرده بودم.<br>
+                        <strong>بررسی:</strong> پیام خطا نشان داد که نمی‌توان عدد و متن را جمع کرد.<br>
+                        <strong>راه‌حل:</strong> با <code>astype(str)</code> اعداد را به متن تبدیل کردم و سپس <code>%</code> را اضافه کردم.<br>
+                        <strong>نتیجه:</strong> خروجی به شکل صحیح (مثل <code>"62.74%"</code>) نمایش داده شد.
+                    </td>
+                    <td>UFuncTypeError: ufunc 'add' did not contain a loop</td>
                 </tr>
                 <tr>
-                    <td>اینجا پاسخ خود را بنویسید...</td>
-                    <td>چگونه علت را بررسی کردی؟ (روش بررسی)</td>
+                    <td>
+                        <strong>خطا:</strong> کد <code>if percentages == 1</code> خروجی اشتباه داد.<br>
+                        <strong>علت:</strong> به جای مقایسه‌ی خود کلاس‌ها، سری متنی درصدها را با عدد <code>1</code> مقایسه کرده بودم و حلقه نداشت.<br>
+                        <strong>بررسی:</strong> متوجه شدم باید روی خود کلاس‌ها (<code>0</code> و <code>1</code>) حلقه بزنم.<br>
+                        <strong>راه‌حل:</strong> از حلقه‌ی <code>for</code> روی <code>proportions.items()</code> و شرط <code>if target_class == 0/1</code> استفاده کردم.<br>
+                        <strong>نتیجه:</strong> خروجی صحیح (چاپ درصد بیمار و سالم) نمایش داده شد.
+                    </td>
+                    <td>خطای منطقی در شرط if percentages == 1</td>
                 </tr>
                 <tr>
-                    <td>اینجا پاسخ خود را بنویسید...</td>
-                    <td>چه تغییری انجام دادی؟ (راه‌حل)</td>
+                    <td>
+                        <strong>سوال:</strong> تفاوت <code>df.info()</code> و <code>df.describe()</code> چیست؟<br>
+                        <strong>پاسخ:</strong> <code>info()</code> ساختار (نوع داده، تعداد مقادیر غیرخالی) را نشان می‌دهد و <code>describe()</code> آمار توصیفی (میانگین، انحراف معیار، کمینه، بیشینه) را برای ستون‌های عددی محاسبه می‌کند.
+                    </td>
+                    <td>مفهوم: تفاوت info() و describe()</td>
                 </tr>
                 <tr>
-                    <td>اینجا پاسخ خود را بنویسید...</td>
-                    <td>آیا مشکل برطرف شد؟ (نتیجه)</td>
+                    <td>
+                        <strong>سوال:</strong> خروجی <code>np.int64(0)</code> یعنی چه؟<br>
+                        <strong>پاسخ:</strong> یعنی عدد صفر از نوع صحیح ۶۴ بیتی NumPy. به زبان ساده، یعنی هیچ مقدار گمشده‌ای در آن ستون وجود ندارد.
+                    </td>
+                    <td>مفهوم: np.int64(0)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> دستور <code>unique()</code> چه کاری می‌کند؟<br>
+                        <strong>پاسخ:</strong> مقادیر یکتا (بدون تکرار) را برمی‌گرداند. در پروژه ما، <code>y.unique()</code> نشان می‌دهد که ستون هدف فقط دو مقدار <code>0</code> و <code>1</code> دارد.
+                    </td>
+                    <td>مفهوم: unique() و sorted(y.unique())</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    -->
-    
+
+    <!-- ============================================== -->
+    <!-- جدول دوم (چهارشنبه) - جدید -->
+    <!-- ============================================== -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>چهارشنبه 1405/7/22</th>
+                    <th>سوالات ثابت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- خطای 1: Bad Interpretation -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> فکر می‌کردم <code>random_state=42</code> باعث بهتر شدن مدل می‌شود.<br>
+                        <strong>علت:</strong> این یک بدفهمی رایج است. <code>random_state</code> فقط برای بازتولیدپذیری (Reproducibility) است.<br>
+                        <strong>بررسی:</strong> با مطالعه مستندات و مثال‌های عملی متوجه شدم که تغییر <code>random_state</code> فقط ترتیب تقسیم داده را تغییر می‌دهد، نه عملکرد مدل را.<br>
+                        <strong>راه‌حل:</strong> مفهوم بازتولیدپذیری را یاد گرفتم و فهمیدم عدد <code>42</code> هیچ ارزش جادویی ندارد.<br>
+                        <strong>نتیجه:</strong> درک صحیح از نقش <code>random_state</code>.
+                    </td>
+                    <td>بدفهمی: random_state=42 باعث بهتر شدن مدل می‌شود</td>
+                </tr>
+
+                <!-- خطای 2: Bad Interpretation -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> فکر می‌کردم استفاده از مجموعه آزمون برای انتخاب مدل اشکالی ندارد.<br>
+                        <strong>علت:</strong> متوجه نبودم که این کار باعث <code>Data Leakage</code> می‌شود.<br>
+                        <strong>بررسی:</strong> با مثال دانش‌آموز و امتحان، مفهوم را بهتر درک کردم.<br>
+                        <strong>راه‌حل:</strong> یاد گرفتم که مجموعه آزمون فقط باید یک بار و در پایان کار برای ارزیابی نهایی استفاده شود.<br>
+                        <strong>نتیجه:</strong> درک صحیح از نقش مجموعه آزمون و مجموعه اعتبارسنجی.
+                    </td>
+                    <td>بدفهمی: استفاده از مجموعه آزمون برای انتخاب مدل</td>
+                </tr>
+
+                <!-- خطای 3: Question about closing VS Code -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> اگر VS Code را ببندم و دوباره باز کنم، آیا تقسیم داده تغییر می‌کند؟<br>
+                        <strong>پاسخ:</strong> خیر. با <code>random_state=42</code>، تقسیم داده همیشه یکسان است، حتی اگر کامپیوتر را خاموش و روشن کنید. این خاصیت بازتولیدپذیری است.
+                    </td>
+                    <td>سوال: تأثیر بستن VS Code بر تقسیم داده</td>
+                </tr>
+
+                <!-- خطای 4: Data Leakage in StandardScaler -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> ممکن بود <code>StandardScaler</code> را روی کل دیتاست (قبل از تقسیم) برازش کنم.<br>
+                        <strong>علت:</strong> نمی‌دانستم که این کار باعث <code>Data Leakage</code> می‌شود.<br>
+                        <strong>بررسی:</strong> با مطالعه مستندات <code>Pipeline</code> و <code>fit_transform</code> متوجه شدم.<br>
+                        <strong>راه‌حل:</strong> از <code>fit_transform</code> فقط روی <code>X_train</code> و از <code>transform</code> فقط روی <code>X_test</code> استفاده کردم.<br>
+                        <strong>نتیجه:</strong> از نشت اطلاعات جلوگیری شد.
+                    </td>
+                    <td>خطا: برازش StandardScaler روی کل دیتاست</td>
+                </tr>
+
+                <!-- خطای 5: Confusion about fit and transform -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> تفاوت <code>fit</code>، <code>transform</code> و <code>fit_transform</code> چیست؟<br>
+                        <strong>پاسخ:</strong> <code>fit</code> پارامترها را یاد می‌گیرد. <code>transform</code> از پارامترها استفاده می‌کند. <code>fit_transform</code> هر دو را با هم انجام می‌دهد (فقط برای داده آموزش).
+                    </td>
+                    <td>سوال: تفاوت fit، transform و fit_transform</td>
+                </tr>
+
+                <!-- خطای 6: Git push -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> چگونه تغییرات را در Git ذخیره کنم؟<br>
+                        <strong>پاسخ:</strong> با <code>git add .</code>، سپس <code>git commit -m "پیام"</code> و در نهایت <code>git push</code>. خروجی موفق نشان می‌دهد که همه چیز به درستی ارسال شده است.
+                    </td>
+                    <td>سوال: نحوه استفاده از Git و push کردن</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- ============================================== -->
+    <!-- جدول سوم (پنجشنبه) - جدید -->
+    <!-- ============================================== -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>پنجشنبه 1405/7/26</th>
+                    <th>سوالات ثابت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- خطا 1: random_state=42 Bad Interpretation -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> فکر می‌کردم <code>random_state=42</code> باعث بهتر شدن مدل می‌شود.<br>
+                        <strong>علت:</strong> این یک بدفهمی رایج است. <code>random_state</code> فقط برای بازتولیدپذیری (Reproducibility) است.<br>
+                        <strong>بررسی:</strong> با مطالعه مستندات و مثال‌های عملی متوجه شدم که تغییر <code>random_state</code> فقط ترتیب تقسیم داده را تغییر می‌دهد، نه عملکرد مدل را.<br>
+                        <strong>راه‌حل:</strong> مفهوم بازتولیدپذیری را یاد گرفتم و فهمیدم عدد <code>42</code> هیچ ارزش جادویی ندارد.<br>
+                        <strong>نتیجه:</strong> درک صحیح از نقش <code>random_state</code>.
+                    </td>
+                    <td>بدفهمی: random_state=42 باعث بهتر شدن مدل می‌شود</td>
+                </tr>
+
+                <!-- خطا 2: Using Test Set for Model Selection -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> فکر می‌کردم استفاده از مجموعه آزمون برای انتخاب مدل اشکالی ندارد.<br>
+                        <strong>علت:</strong> متوجه نبودم که این کار باعث <code>Data Leakage</code> می‌شود.<br>
+                        <strong>بررسی:</strong> با مثال دانش‌آموز و امتحان، مفهوم را بهتر درک کردم.<br>
+                        <strong>راه‌حل:</strong> یاد گرفتم که مجموعه آزمون فقط باید یک بار و در پایان کار برای ارزیابی نهایی استفاده شود.<br>
+                        <strong>نتیجه:</strong> درک صحیح از نقش مجموعه آزمون و مجموعه اعتبارسنجی.
+                    </td>
+                    <td>بدفهمی: استفاده از مجموعه آزمون برای انتخاب مدل</td>
+                </tr>
+
+                <!-- خطا 3: VS Code Effect on Split -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> اگر <code>VS Code</code> را ببندم و دوباره باز کنم، آیا تقسیم داده تغییر می‌کند؟<br>
+                        <strong>پاسخ:</strong> خیر. با <code>random_state=42</code>، تقسیم داده همیشه یکسان است، حتی اگر کامپیوتر را خاموش و روشن کنید. این خاصیت بازتولیدپذیری است.
+                    </td>
+                    <td>سوال: تأثیر بستن VS Code بر تقسیم داده</td>
+                </tr>
+
+                <!-- خطا 4: Data Leakage in StandardScaler -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> ممکن بود <code>StandardScaler</code> را روی کل دیتاست (قبل از تقسیم) برازش کنم.<br>
+                        <strong>علت:</strong> نمی‌دانستم که این کار باعث <code>Data Leakage</code> می‌شود.<br>
+                        <strong>بررسی:</strong> با مطالعه مستندات <code>Pipeline</code> و <code>fit_transform</code> متوجه شدم.<br>
+                        <strong>راه‌حل:</strong> از <code>fit_transform</code> فقط روی <code>X_train</code> و از <code>transform</code> فقط روی <code>X_test</code> استفاده کردم.<br>
+                        <strong>نتیجه:</strong> از نشت اطلاعات جلوگیری شد.
+                    </td>
+                    <td>خطا: برازش StandardScaler روی کل دیتاست</td>
+                </tr>
+
+                <!-- خطا 5: fit, transform, fit_transform Confusion -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> تفاوت <code>fit</code>، <code>transform</code> و <code>fit_transform</code> چیست؟<br>
+                        <strong>پاسخ:</strong> <code>fit</code> پارامترها را یاد می‌گیرد. <code>transform</code> از پارامترها استفاده می‌کند. <code>fit_transform</code> هر دو را با هم انجام می‌دهد (فقط برای داده آموزش).
+                    </td>
+                    <td>سوال: تفاوت fit، transform و fit_transform</td>
+                </tr>
+
+                <!-- خطا 6: Git push -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> چگونه تغییرات را در <code>Git</code> ذخیره کنم؟<br>
+                        <strong>پاسخ:</strong> با <code>git add .</code>، سپس <code>git commit -m "پیام"</code> و در نهایت <code>git push</code>. خروجی موفق نشان می‌دهد که همه چیز به درستی ارسال شده است.
+                    </td>
+                    <td>سوال: نحوه استفاده از Git و push کردن</td>
+                </tr>
+
+                <!-- Concept: Precision, Recall, F1, Confusion Matrix -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> تفاوت <code>Accuracy</code>، <code>Precision</code>، <code>Recall</code> و <code>F1-score</code> چیست و هر کدام چه کاربردی دارند؟<br>
+                        <strong>پاسخ:</strong> <code>Accuracy</code> نسبت پیش‌بینی‌های صحیح است. <code>Precision</code> از میان پیش‌بینی‌های مثبت، چند تا واقعاً درست هستند. <code>Recall</code> از میان نمونه‌های واقعی مثبت، چند تا شناسایی شده‌اند. <code>F1-score</code> میانگین هارمونیک Precision و Recall است. در داده‌های نامتعادل، Accuracy می‌تواند گمراه‌کننده باشد.
+                    </td>
+                    <td>مفهوم: معیارهای ارزیابی مدل</td>
+                </tr>
+
+                <!-- Concept: Confusion Matrix -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> <code>Confusion Matrix</code> چیست و چگونه تفسیر می‌شود؟<br>
+                        <strong>پاسخ:</strong> جدولی که تعداد پیش‌بینی‌های صحیح و اشتباه مدل را برای هر کلاس نشان می‌دهد (TP, TN, FP, FN). در پروژه ما، ماتریس به شکل <code>[[37, 1], [1, 75]]</code> بود که نشان می‌دهد مدل ۲ خطا از ۱۱۴ نمونه دارد.
+                    </td>
+                    <td>مفهوم: Confusion Matrix</td>
+                </tr>
+
+                <!-- Result 1: Baseline vs Model Accuracy -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> <code>Baseline Accuracy</code> برابر ۰.۶۲۲۸ (۶۲.۲۸٪) و <code>Model Accuracy</code> برابر ۰.۹۸۲۵ (۹۸.۲۵٪) بود.<br>
+                        <strong>تحلیل:</strong> مدل <code>Logistic Regression</code> حدود ۳۶ درصد از <code>Baseline</code> بهتر عمل کرده است. این بهبود از نظر عملی بسیار مهم است.
+                    </td>
+                    <td>نتیجه: مقایسه Baseline و مدل</td>
+                </tr>
+
+                <!-- Result 2: Precision, Recall, F1 -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> <code>Precision</code> برابر ۰.۹۸۲۰، <code>Recall</code> برابر ۰.۹۸۹۱ و <code>F1-score</code> برابر ۰.۹۸۵۵ بود.<br>
+                        <strong>تحلیل:</strong> مدل در هر دو کلاس (malignant و benign) عملکرد متعادلی دارد.
+                    </td>
+                    <td>نتیجه: معیارهای Precision، Recall و F1</td>
+                </tr>
+
+                <!-- Result 3: Confusion Matrix -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> <code>Confusion Matrix</code> به شکل زیر بود:<br>
+                        <code>[[37, 1], [1, 75]]</code><br>
+                        <strong>تحلیل:</strong> ۳۷ نمونه malignant درست، ۱ نمونه malignant به اشتباه benign، ۱ نمونه benign به اشتباه malignant، ۷۵ نمونه benign درست.
+                    </td>
+                    <td>نتیجه: ماتریس درهم‌ریختگی</td>
+                </tr>
+
+                <!-- Remaining Tasks -->
+                <tr>
+                    <td>
+                        <strong>موارد باقی‌مانده:</strong><br>
+                        - انجام <code>Cross-validation</code> برای ارزیابی پایدارتر.<br>
+                        - مقایسه با مدل‌های دیگر (مثل <code>Random Forest</code>، <code>SVM</code>).<br>
+                        - تحلیل دقیق‌تر نمونه‌هایی که مدل اشتباه پیش‌بینی کرده است.<br>
+                        - ساخت <code>API</code> برای پیش‌بینی هنوز انجام نشده است.
+                    </td>
+                    <td>موارد باقی‌مانده و گام بعدی</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
