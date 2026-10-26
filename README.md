@@ -1,62 +1,120 @@
-\# Tabular ML Prediction API
+# 🚀 Tabular ML Prediction API
+
+> An end-to-end, production-ready machine learning pipeline for binary classification on tabular data.
+
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0%2B-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+---
+
+## 📖 Overview
+
+This repository contains an educational, yet professionally structured, machine learning project. It demonstrates a complete workflow from raw data analysis to model evaluation and error analysis, using the **Breast Cancer Wisconsin** dataset.
+
+The goal is not only to build a predictive model but to showcase best practices in **data preprocessing**, **model evaluation**, and **reproducibility**.
+
+---
+
+## 🎯 Problem Definition
+
+- **Task:** Binary Classification
+- **Input:** 30 numerical features (e.g., mean radius, mean texture, etc.)
+- **Target:** 0 (Malignant) or 1 (Benign)
+
+---
+
+## 📂 Repository Structure
+
+We have organized the project to separate **learning** from **production-ready code**:
+
+/tabular-ml-prediction-api
+│
+├── README.md # You are here
+├── PROJECT_SPEC.md # Detailed problem definition & limitations
+├── DEVLOG.md # Development log with errors & fixes
+├── requirements.txt # Project dependencies
+├── .gitignore
+│
+├── /data
+├── /notebooks
+│ ├── initial_data_analysis_1.ipynb # 📚 Learning Notebook (Step-by-step with errors)
+│ └── initial_data_analysis_2.ipynb # 🚀 Production Notebook (Clean, structured, ready for review)
+│
+├── /reports
+│ ├── initial_data_analysis.md
+│ ├── first_model_evaluation.md
+│ └── learning_notes.md
+│
+├── /src # (Future) Python scripts for the API
+└── /tests # (Future) Unit tests
 
 
+### 🔍 Notebook Guide:
+- **`initial_data_analysis_1.ipynb`**: This is our **learning lab**. It contains exploratory steps, trial & error, and detailed Persian explanations. It shows *how* we arrived at the solution.
+- **`initial_data_analysis_2.ipynb`**: This is the **clean, production-ready version**. It contains only the essential code with English markdown documentation. **This is the file you should review for a quick understanding of the project.**
 
-\## این پروژه چیست؟
+---
 
-یک پروژهٔ آموزشی برای ساخت مدل یادگیری ماشین روی داده‌های جدولی و ارائهٔ پیش‌بینی از طریق یک API.
+## ⚙️ Current Implementation
 
+- [x] **Initial Data Analysis:** Checked shape, dtypes, missing values, and target distribution.
+- [x] **Train/Test Split:** 80/20 split with `stratify=y` and `random_state=42`.
+- [x] **Baseline Classifier:** `DummyClassifier` (most frequent) to set a performance floor.
+- [x] **Logistic Regression Pipeline:** `StandardScaler` + `LogisticRegression` (preventing data leakage).
+- [x] **Classification Metrics:** Accuracy, Precision, Recall, F1-Score, and Confusion Matrix.
+- [x] **Error Analysis:** Inspected misclassified samples.
+- [x] **Cross-Validation:** 5-Fold `StratifiedKFold` to ensure stability.
 
+---
 
-\## چه مسئله‌ای را حل می‌کند؟
+## 📊 Evaluation Results
 
-پیش‌بینی کلاس (خوش‌خیم / بدخیم) برای نمونه‌های تودهٔ پستان، بر اساس ویژگی‌های عددی استخراج‌شده از تصاویر.
+| Metric | Baseline | Logistic Regression |
+| :--- | :--- | :--- |
+| **Accuracy** | 0.63 | **0.98** |
+| **Precision** | 0.63 | **0.99** |
+| **Recall** | 1.00 | **0.99** |
+| **F1-Score** | 0.77 | **0.99** |
 
+*For detailed reports, please see the `reports/` directory.*
 
+---
 
-\## از چه دیتاستی استفاده می‌کند؟
+## ⚠️ Limitations
 
-Breast Cancer Wisconsin Dataset (موجود در scikit-learn)
+- **Educational Purpose Only:** This project is not intended for medical diagnosis or clinical use.
+- **Dataset:** The model was trained and evaluated on a public, clean dataset. Real-world data may require more robust preprocessing.
 
+---
 
+## 🚧 Current Status
 
-\## چه فناوری‌هایی به کار می‌روند؟
+| Feature | Status |
+| :--- | :--- |
+| Data Analysis | ✅ Complete |
+| Train/Test Split | ✅ Complete |
+| Baseline & Model | ✅ Complete |
+| Evaluation & Metrics | ✅ Complete |
+| Error Analysis | ✅ Complete |
+| Cross-Validation | ✅ Complete |
+| **API Implementation** | 🔄 Not Started |
+| **Automated Tests** | 🔄 Not Started |
+| **Model Deployment** | 🔄 Not Started |
 
-\- Python
+---
 
-\- scikit-learn
+## 🚀 Next Steps
 
-\- pandas
+1.  **API Development:** Build a FastAPI/Flask endpoint to serve predictions.
+2.  **Automated Testing:** Write unit tests for preprocessing and model inference.
+3.  **Model Deployment:** Containerize the API with Docker and deploy.
 
-\- NumPy
+---
 
-\- FastAPI (برای API)
+## 👨‍💻 Author
 
-\- pytest (برای تست)
+**Amir AI(SI)** – Applied AI Engineer Roadmap
 
-
-
-\## وضعیت فعلی پروژه
-
-🚧 در حال توسعه (Work in Progress)
-
-
-
-\## چه بخش‌هایی هنوز پیاده‌سازی نشده‌اند؟
-
-\- \[ ] تحلیل اکتشافی داده (EDA)
-
-\- \[ ] آموزش مدل
-
-\- \[ ] ارزیابی مدل
-
-\- \[ ] ساخت API
-
-\- \[ ] نوشتن تست‌ها
-
-
-
-\## ⚠️ هشدار
-
-این پروژه صرفاً آموزشی است و مدل ساخته‌شده نباید برای تصمیم‌گیری بالینی واقعی استفاده شود.
-
+- GitHub: [@amirtech-ai](https://github.com/amirtech-ai)
+- LinkedIn: [Amir Mohammad Fallah](https://www.linkedin.com/in/amir-mohammad-fallah-11831342b/)

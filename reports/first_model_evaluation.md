@@ -52,3 +52,12 @@ Binary classification on a tabular dataset
 1. Perform Cross-validation for more robust evaluation.
 2. Compare with other models (e.g., Random Forest, SVM).
 3. Analyze misclassified samples to understand potential patterns.
+
+
+## Limitations
+
+- **Evaluation on a public dataset:** The evaluation was performed on the Breast Cancer Wisconsin dataset, which is a public and very clean dataset. Real-world data is often messier.
+- **Limited test set size:** The test set contains only 114 samples. A larger test set would provide a more reliable evaluation.
+- **Performance on other data may differ:** The model's performance on this dataset does not guarantee similar performance on other datasets or real-world data.
+- **Comparison with Baseline alone is not proof of commercial value:** Being better than a Baseline does not necessarily mean the model is valuable for a real business application. Other factors (data quality, cost of errors, security requirements, etc.) must be considered.
+- **For real-world use, further investigation is needed:** Data quality, cost of errors, usage conditions, and security requirements must be thoroughly evaluated before deploying the model in a real-world scenario.
