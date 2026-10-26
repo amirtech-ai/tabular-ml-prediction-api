@@ -58,7 +58,7 @@ We have organized the project to separate learning from production-ready code. H
 │
 └── /tests                  # (Future) Unit tests
     └── .gitkeep
-
+```
 ### 🔍 Notebook Guide:
 - **`initial_data_analysis_1.ipynb`**: This is our **learning lab**. It contains exploratory steps, trial & error, and detailed Persian explanations. It shows *how* we arrived at the solution.
 - **`initial_data_analysis_2.ipynb`**: This is the **clean, production-ready version**. It contains only the essential code with English markdown documentation. **This is the file you should review for a quick understanding of the project.**
