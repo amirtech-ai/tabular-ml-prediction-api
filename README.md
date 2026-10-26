@@ -26,29 +26,38 @@ The goal is not only to build a predictive model but to showcase best practices 
 
 ## 📂 Repository Structure
 
-We have organized the project to separate **learning** from **production-ready code**:
+We have organized the project to separate learning from production-ready code. Here is the current structure:
 
+```text
 /tabular-ml-prediction-api
 │
-├── README.md # You are here
-├── PROJECT_SPEC.md # Detailed problem definition & limitations
-├── DEVLOG.md # Development log with errors & fixes
-├── requirements.txt # Project dependencies
-├── .gitignore
+├── README.md               # You are here
+├── PROJECT_SPEC.md         # Detailed problem definition & limitations
+├── DEVLOG.md               # Development log with errors & fixes
+├── DEVLOG.html             # HTML version of the error log
+├── requirements.txt        # Project dependencies
+├── .gitignore              # Git ignore rules
+├── LICENSE                 # MIT License
 │
-├── /data
-├── /notebooks
-│ ├── initial_data_analysis_1.ipynb # 📚 Learning Notebook (Step-by-step with errors)
-│ └── initial_data_analysis_2.ipynb # 🚀 Production Notebook (Clean, structured, ready for review)
+├── /data                   # Dataset folder
+│   └── .gitkeep
 │
-├── /reports
-│ ├── initial_data_analysis.md
-│ ├── first_model_evaluation.md
-│ └── learning_notes.md
+├── /notebooks              # Learning and experimentation
+│   ├── initial_data_analysis_1.ipynb  # 📓 Learning Notebook (Step-by-step with errors)
+│   └── initial_data_analysis_2.ipynb  # 🚀 Clean & Structured Notebook
 │
-├── /src # (Future) Python scripts for the API
-└── /tests # (Future) Unit tests
-
+├── /reports                # Evaluation reports and notes
+│   ├── initial_data_analysis_1.md
+│   ├── data_split_analysis.md
+│   ├── first_model_evaluation.md
+│   ├── error_analysis.md
+│   └── learning_notes.md
+│
+├── /src                    # (Future) Python scripts for the API
+│   └── .gitkeep
+│
+└── /tests                  # (Future) Unit tests
+    └── .gitkeep
 
 ### 🔍 Notebook Guide:
 - **`initial_data_analysis_1.ipynb`**: This is our **learning lab**. It contains exploratory steps, trial & error, and detailed Persian explanations. It shows *how* we arrived at the solution.
