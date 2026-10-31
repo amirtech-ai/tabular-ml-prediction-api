@@ -26,3 +26,8 @@ data/*.xlsx
 # OS
 .DS_Store
 Thumbs.db
+
+# Models
+models/
+*.pkl
+*.joblib

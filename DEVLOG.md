@@ -152,3 +152,82 @@
 - اجرای `Cross-validation` برای ارزیابی پایدارتر.
 - مقایسه با مدل‌های دیگر.
 - تحلیل خطاهای مدل.
+
+
+## تاریخ: 1405/07/25
+
+## Initial Project Status
+- **وضعیت اولیه پروژه:** پروژه در مرحله‌ی ساخت مدل اولیه و ارزیابی آن قرار دارد. تحلیل داده و تقسیم‌بندی انجام شده و اولین مدل آموزش دیده است.
+- **آخرین اجرای موفق:** اجرای کامل نوتبوک `initial_data_analysis_1.ipynb` بدون خطا (شامل بارگذاری داده تا محاسبه معیارهای ارزیابی).
+- **فایل اصلی آموزش:** `notebooks/initial_data_analysis_1.ipynb` (در حال حاضر آموزش و ارزیابی در همین یک فایل انجام می‌شود).
+- **فایل اصلی ارزیابی:** `reports/first_model_evaluation.md` (گزارش مکتوب) و بخش ارزیابی در همان نوتبوک.
+
+## Audit Findings
+- **بخش‌های کامل:** بارگذاری داده، تحلیل اولیه (EDA)، جداسازی `X` و `y`، تقسیم داده (`train_test_split` با `stratify`)، ساخت `Baseline`، ساخت `Pipeline` (شامل `StandardScaler` و `LogisticRegression`)، تولید پیش‌بینی، محاسبه معیارها (Accuracy, Precision, Recall, F1, Confusion Matrix) و Cross-validation (`StratifiedKFold`).
+- **بخش‌های ناقص:** 
+  - انتقال کدها از نوتبوک به اسکریپت‌های پایتون (`.py`) در پوشه `/src`.
+  - ساخت API (وب‌سرویس پیش‌بینی).
+  - نوشتن تست‌های خودکار (`/tests`).
+- **بخش‌های انجام نشده:** (هنوز شروع نشده) ساخت فایل `WEEK_02_TASKS.md` برای برنامه‌ریزی دقیق هفته دوم.
+
+## Data Quality
+- **تعداد نمونه‌ها:** ۵۶۹ نمونه (ردیف).
+- **تعداد ویژگی‌ها:** ۳۰ ویژگی عددی (ستون) + ۱ ستون هدف (`target`).
+- **مقادیر کم‌شده:** ۰ (هیچ مقدار گم‌شده‌ای وجود ندارد).
+- **ردیف‌های تکراری:** ۰ (هیچ ردیف تکراری یافت نشد).
+- **توزیع کلاس‌ها:** کلاس `1` (benign): ۳۵۷ نمونه (۶۲.۷۴٪) | کلاس `0` (malignant): ۲۱۲ نمونه (۳۷.۲۶٪) - داده‌ها کمی نامتعادل هستند.
+
+## Training and Evaluation
+- **وضعیت train/test split:** انجام شده. نسبت ۸۰٪ آموزش (۴۵۵ نمونه) و ۲۰٪ آزمون (۱۱۴ نمونه) با `random_state=42` و `stratify=y`.
+- **وضعیت baseline:** انجام شده. `DummyClassifier` با `strategy="most_frequent"` و دقت (Accuracy) حدود ۶۲.۲۸٪.
+- **وضعیت Logistic Regression:** انجام شده. مدل با دقت (Accuracy) حدود ۹۸.۲۵٪ و F1-score حدود ۰.۹۸۵۵.
+- **وضعیت Pipeline:** انجام شده. شامل `StandardScaler` و `LogisticRegression(max_iter=2000)`. از نشت اطلاعات (Data Leakage) جلوگیری شده است (fit_transform فقط روی آموزش).
+- **وضعیت Cross-validation:** انجام شده. با `StratifiedKFold` (n_splits=5) روی داده آموزش. میانگین F1-score برابر ۰.۹۸۲۴ و انحراف معیار ۰.۰ (مدل پایدار).
+
+## Tests and Reproducibility
+- **دستورات اجراشده:** اجرای مجدد نوتبوک با `Restart & Run All` (اجرای از ابتدا تا انتها).
+- **تست‌های موفق:** خروجی‌ها دقیقاً با اجرای قبلی یکسان بودند (به دلیل `random_state=42`). هیچ خطایی در اجرای مجدد رخ نداد. ابعاد داده‌ها و معیارها با گزارش‌ها هماهنگ هستند.
+- **تست‌های ناموفق:** هیچ تست ناموفقی در اجرای مجدد مشاهده نشد.
+- **مشکلات شناسایی شده:** در حال حاضر مشکل فنی خاصی وجود ندارد. تنها چالش، مرتب‌سازی کدها برای انتقال به مرحله‌ی بعد (ساخت API) است.
+
+## Market Research
+- **مشتریان بالقوه:** (طبق انتخاب شما در هفته اول) کسب‌وکارهایی که نیاز به پردازش اسناد فارسی یا پیش‌بینی داده‌های جدولی دارند. (در حال حاضر این بخش هنوز به‌طور کامل در پروژه پیاده‌سازی نشده است).
+- **فرضیه‌های مشکل:** فرض بر این است که کسب‌وکارها برای تحلیل داده‌های جدولی خود به ابزارهای سریع و قابل اعتماد نیاز دارند.
+- **اقدام بعدی:** شناسایی دقیق ۳ مشتری بالقوه و انجام مصاحبه برای اعتبارسنجی مشکل (طبق برنامه‌ی هفته‌ی اول، این بخش هنوز ناقص است و باید در هفته‌های آینده تکمیل شود).
+
+
+## تاریخ: 1405/07/26
+
+## Goal
+Refactor the training workflow and persist the trained pipeline.
+
+## Code Changes
+- **Modules created or updated:** 
+  - Created `/src/__init__.py` (to make `src` a package).
+  - Created `/src/train.py` (training and evaluation workflow).
+  - Created `/src/predict.py` (model loading and prediction interface).
+- **Training entry point:** `python -m src.train`
+- **Prediction module:** `src/predict.py` with `load_model()` and `predict()` functions.
+- **Data loading changes:** Data is now loaded directly inside `train.py` using `load_breast_cancer(as_frame=True)`, and a `.copy()` is used to prevent modifying the original dataset.
+
+## Model Artifact
+- **Artifact path:** `artifacts/model.joblib`
+- **Full pipeline saved:** Yes (includes `StandardScaler` and `LogisticRegression`).
+- **Loading tested:** Yes, successfully loaded using `joblib.load()`.
+
+## Reproducibility
+- **Training command:** `python -m src.train`
+- **Execution successful:** Yes, the script runs without errors and outputs the evaluation metrics.
+- **Dependency versions recorded:** Yes (updated `requirements.txt`).
+
+## Tests
+- **Training:** Successful. No errors during model fitting.
+- **Artifact creation:** Successful. The file `artifacts/model.joblib` is created.
+- **Artifact loading:** Successful. The model loads correctly.
+- **Prediction consistency:** Successful. Predictions before saving and after loading are identical (`Are they identical? True`).
+- **Invalid input handling:** Successful. The function raises a clear `ValueError` when the input does not have exactly 30 features.
+
+## Market Research
+- **Leads followed up:** (این بخش را بر اساس تحقیقات بازار خودتان پر کنید. مثلاً: ۳ مشتری بالقوه در حوزه پردازش اسناد شناسایی شد).
+- **Customer workflow insights:** (مثلاً: مشتریان فعلاً از اکسل برای دسته‌بندی اسناد استفاده می‌کنند و زمان زیادی صرف می‌کنند).
+- **Next action:** (مثلاً: تماس با مشتری اول برای انجام مصاحبه در روزهای آینده).

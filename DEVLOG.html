@@ -359,5 +359,210 @@
             </tbody>
         </table>
     </div>
+        <!-- ============================================== -->
+    <!-- جدول چهارم (جمعه) - جدید -->
+    <!-- ============================================== -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>جمعه 1405/7/28</th>
+                    <th>سوالات ثابت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- مفهوم 1: Cross-validation و تفاوت آن با Test Set -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> تفاوت <code>Cross-validation</code> با <code>Test Set</code> چیست؟<br>
+                        <strong>پاسخ:</strong> <code>Test Set</code> فقط <strong>یک بار</strong> و در پایان کار برای ارزیابی نهایی استفاده می‌شود. اما <code>Cross-validation</code> روی داده آموزش انجام می‌شود و داده را به چند بخش (Fold) تقسیم می‌کند تا ارزیابی پایدارتری به دست آید. استفاده مکرر از <code>Test Set</code> باعث <code>Data Leakage</code> می‌شود.
+                    </td>
+                    <td>مفهوم: Cross-validation و Test Set</td>
+                </tr>
+
+                <!-- مفهوم 2: StratifiedKFold -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> چرا در <code>Cross-validation</code> از <code>StratifiedKFold</code> استفاده کردیم؟<br>
+                        <strong>پاسخ:</strong> چون داده‌های ما نامتعادل هستند (۶۲.۷۴٪ کلاس ۱ و ۳۷.۲۶٪ کلاس ۰). <code>StratifiedKFold</code> تضمین می‌کند که نسبت کلاس‌ها در هر Fold دقیقاً حفظ شود تا ارزیابی عادلانه باشد.
+                    </td>
+                    <td>مفهوم: StratifiedKFold</td>
+                </tr>
+
+                <!-- خطا 1: Bad Interpretation about random_state=42 -->
+                <tr>
+                    <td>
+                        <strong>خطا (بدفهمی):</strong> فکر می‌کردم <code>random_state=42</code> باعث بهتر شدن مدل می‌شود.<br>
+                        <strong>علت:</strong> <code>random_state</code> فقط برای بازتولیدپذیری (Reproducibility) است و روی عملکرد مدل تأثیری ندارد.<br>
+                        <strong>راه‌حل:</strong> با مطالعه مستندات متوجه شدم که تغییر <code>random_state</code> فقط ترتیب تقسیم داده را تغییر می‌دهد، نه دقت مدل را.<br>
+                        <strong>نتیجه:</strong> درک صحیح از نقش <code>random_state</code>.
+                    </td>
+                    <td>بدفهمی: random_state=42 باعث بهتر شدن مدل می‌شود</td>
+                </tr>
+
+                <!-- خطا 2: Confusion about .ipynb vs .py in Production -->
+                <tr>
+                    <td>
+                        <strong>خطا (بدفهمی):</strong> فکر می‌کردم در پروژه‌های واقعی، آموزش و ارزیابی در فایل‌های <code>.ipynb</code> جداگانه انجام می‌شود و با <code>import</code> به هم وصل می‌شوند.<br>
+                        <strong>علت:</strong> با محیط <code>Production</code> و استانداردهای مهندسی نرم‌افزار آشنا نبودم.<br>
+                        <strong>راه‌حل:</strong> یاد گرفتم که در پروژه‌های واقعی، کدها از <code>.ipynb</code> به فایل‌های <code>.py</code> (در پوشه <code>/src</code>) منتقل می‌شوند و مدل با کتابخانه‌هایی مثل <code>joblib</code> ذخیره می‌شود.<br>
+                        <strong>نتیجه:</strong> درک صحیح از ساختار پروژه‌های واقعی (Production-Ready).
+                    </td>
+                    <td>بدفهمی: استفاده از فایل‌های .ipynb در Production</td>
+                </tr>
+
+                <!-- خطا 3: Empty Output of Asserts -->
+                <tr>
+                    <td>
+                        <strong>خطا (بدفهمی):</strong> فکر می‌کردم دستورات <code>assert</code> باید خروجی چاپ کنند.<br>
+                        <strong>علت:</strong> با رفتار دستور <code>assert</code> در پایتون آشنا نبودم.<br>
+                        <strong>راه‌حل:</strong> یاد گرفتم که <code>assert</code> اگر شرطش درست باشد، هیچ خروجی نمی‌دهد (سکوت = موفقیت) و اگر غلط باشد، خطای <code>AssertionError</code> می‌دهد.<br>
+                        <strong>نتیجه:</strong> درک صحیح از دستور <code>assert</code>.
+                    </td>
+                    <td>مفهوم: خروجی دستور assert</td>
+                </tr>
+
+                <!-- خطا 4: License and README mismatch -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> در فایل <code>README.md</code> نوشته بودم <code>License MIT</code> و <code>Production-ready</code>، اما هنوز فایل <code>LICENSE</code> را نساخته بودم و کدها به مرحله <code>Production</code> نرسیده بودند.<br>
+                        <strong>علت:</strong> کپی کردن یک قالب آماده بدون هماهنگ کردن آن با واقعیت پروژه.<br>
+                        <strong>راه‌حل:</strong> بخش <code>Current Status</code> را اصلاح کردم و متوجه شدم باید صادقانه وضعیت پروژه را نشان دهم.<br>
+                        <strong>نتیجه:</strong> <code>README</code> واقع‌گرایانه‌تر شد.
+                    </td>
+                    <td>خطا: عدم هماهنگی README با واقعیت پروژه</td>
+                </tr>
+
+                <!-- نتیجه 1: Cross-validation Results -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> <code>Cross-validation</code> با <code>StratifiedKFold</code> (۵ بخش) روی داده آموزش انجام شد.<br>
+                        <strong>خروجی:</strong> <code>F1 scores: [0.9824, 0.9824, 0.9824, 0.9824, 0.9824]</code><br>
+                        <strong>تحلیل:</strong> انحراف معیار برابر <code>0.0</code> بود که نشان می‌دهد مدل کاملاً پایدار است و به تقسیم داده حساس نیست.
+                    </td>
+                    <td>نتیجه: ارزیابی پایداری مدل با Cross-validation</td>
+                </tr>
+
+                <!-- نتیجه 2: Model Stability -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> مدل <code>Logistic Regression</code> نه تنها در یک تقسیم تصادفی، بلکه در ۵ تقسیم مختلف (Fold) عملکرد یکسانی داشت (F1 ~ 0.9824).<br>
+                        <strong>تحلیل:</strong> این نشان می‌دهد مدل ما <code>Overfitting</code> نکرده و قابلیت تعمیم (Generalization) بالایی دارد.
+                    </td>
+                    <td>نتیجه: پایداری مدل در Foldهای مختلف</td>
+                </tr>
+
+                <!-- اقدام بعدی: Next Steps -->
+                <tr>
+                    <td>
+                        <strong>اقدام بعدی:</strong><br>
+                        - انتقال کدهای نوتبوک به فایل‌های <code>.py</code> در پوشه <code>/src</code>.<br>
+                        - ساخت <code>API</code> برای پیش‌بینی (با <code>FastAPI</code>).<br>
+                        - نوشتن تست‌های خودکار در پوشه <code>/tests</code>.<br>
+                        - ایجاد فایل <code>LICENSE</code> برای پروژه.<br>
+                        - شناسایی ۳ مشتری بالقوه (Market Research).
+                    </td>
+                    <td>اقدامات باقی‌مانده برای هفته آینده</td>
+                </tr>
+                                <!-- مفهوم ۱: True/False Positive/Negative -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> چهار حالت اصلی پیش‌بینی (<code>TP</code>, <code>TN</code>, <code>FP</code>, <code>FN</code>) چه هستند؟<br>
+                        <strong>پاسخ:</strong> 
+                        <code>TP</code> (مثبت واقعی): مدل گفت بیمار، واقعاً بیمار بود.<br>
+                        <code>TN</code> (منفی واقعی): مدل گفت سالم، واقعاً سالم بود.<br>
+                        <code>FP</code> (مثبت کاذب): مدل گفت بیمار، واقعاً سالم بود (خطای نوع اول).<br>
+                        <code>FN</code> (منفی کاذب): مدل گفت سالم، واقعاً بیمار بود (خطای نوع دوم - فاجعه‌بار).
+                    </td>
+                    <td>مفهوم: چهار حالت پیش‌بینی</td>
+                </tr>
+
+                <!-- مفهوم ۲: Accuracy -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> معیار <code>Accuracy</code> چه چیزی را نشان می‌دهد؟<br>
+                        <strong>پاسخ:</strong> نسبت کل پیش‌بینی‌های درست (چه بیمار و چه سالم) به کل نمونه‌ها. فرمول: <code>(TP + TN) / Total</code>.<br>
+                        <strong>نقطه ضعف:</strong> در داده‌های نامتعادل، مدل تنبلی که همیشه کلاس اکثریت را پیش‌بینی کند، <code>Accuracy</code> بالایی می‌گیرد (مثلاً ۹۵٪) اما عملاً هیچ ارزشی ندارد.
+                    </td>
+                    <td>مفهوم: Accuracy (دقت کلی)</td>
+                </tr>
+
+                <!-- مفهوم ۳: Precision -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> معیار <code>Precision</code> چه چیزی را نشان می‌دهد؟<br>
+                        <strong>پاسخ:</strong> از میان نمونه‌هایی که مدل به عنوان «مثبت» (مثلاً بیمار) پیش‌بینی کرده است، چند درصد واقعاً مثبت هستند. فرمول: <code>TP / (TP + FP)</code>.<br>
+                        <strong>کاربرد:</strong> وقتی هزینه‌ی <code>FP</code> (ترساندن بی‌مورد افراد سالم) بالاست (مثل فیلتر اسپم).
+                    </td>
+                    <td>مفهوم: Precision (دقت مثبت)</td>
+                </tr>
+
+                <!-- مفهوم ۴: Recall / Sensitivity -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> معیار <code>Recall</code> (یا <code>Sensitivity</code>) چه چیزی را نشان می‌دهد؟<br>
+                        <strong>پاسخ:</strong> از میان نمونه‌هایی که واقعاً «مثبت» (بیمار) هستند، چند درصد توسط مدل شناسایی شده‌اند. فرمول: <code>TP / (TP + FN)</code>.<br>
+                        <strong>کاربرد:</strong> وقتی هزینه‌ی <code>FN</code> (از دست دادن یک بیمار واقعی) بسیار بالاست (مثل تشخیص سرطان).
+                    </td>
+                    <td>مفهوم: Recall / Sensitivity (بازیابی)</td>
+                </tr>
+
+                <!-- مفهوم ۵: F1-score -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> معیار <code>F1-score</code> چه چیزی را نشان می‌دهد؟<br>
+                        <strong>پاسخ:</strong> میانگین هارمونیک <code>Precision</code> و <code>Recall</code> است. فرمول: <code>2 * (Precision * Recall) / (Precision + Recall)</code>.<br>
+                        <strong>مزیت:</strong> از میانگین معمولی استفاده نمی‌کند چون اگر یکی از معیارها صفر باشد، کل F1 صفر می‌شود. برای تعادل بین Precision و Recall و ارزیابی در داده‌های نامتعادل عالی است.
+                    </td>
+                    <td>مفهوم: F1-score (تعادل)</td>
+                </tr>
+
+                <!-- مفهوم ۶: Specificity -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> معیار <code>Specificity</code> (یا <code>True Negative Rate</code>) چه چیزی را نشان می‌دهد؟<br>
+                        <strong>پاسخ:</strong> از میان افرادی که واقعاً سالم هستند، چند درصد توسط مدل به درستی سالم تشخیص داده شده‌اند. فرمول: <code>TN / (TN + FP)</code>.<br>
+                        <strong>کاربرد:</strong> نشان می‌دهد مدل چقدر خوب افراد سالم را به حال خودشان می‌گذارد و آن‌ها را اشتباهاً بیمار اعلام نمی‌کند.
+                    </td>
+                    <td>مفهوم: Specificity (ویژگی)</td>
+                </tr>
+
+                <!-- مفهوم ۷: Balanced Accuracy -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> معیار <code>Balanced Accuracy</code> چه تفاوتی با <code>Accuracy</code> معمولی دارد؟<br>
+                        <strong>پاسخ:</strong> در داده‌های نامتعادل، <code>Accuracy</code> معمولی گمراه‌کننده است. <code>Balanced Accuracy</code> میانگین <code>Recall</code> هر دو کلاس (مثبت و منفی) را حساب می‌کند. فرمول: <code>(Sensitivity + Specificity) / 2</code>.<br>
+                        <strong>مثال:</strong> مدل تنبل با <code>Accuracy</code> ۶۲٪، <code>Balanced Accuracy</code> حدود ۵۰٪ دارد (چون برای کلاس اقلیت Recall صفر است).
+                    </td>
+                    <td>مفهوم: Balanced Accuracy (دقت متوازن)</td>
+                </tr>
+
+                <!-- مفهوم ۸: Confusion Matrix -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> <code>Confusion Matrix</code> چه چیزی را به ما نشان می‌دهد؟<br>
+                        <strong>پاسخ:</strong> یک جدول ۲×۲ که تمام چهار حالت (<code>TP</code>, <code>TN</code>, <code>FP</code>, <code>FN</code>) را به تفکیک نشان می‌دهد.<br>
+                        <strong>مثال در پروژه:</strong> در ماتریس <code>[[37, 1], [1, 75]]</code>، مشخص است که مدل ۲ خطا (۱ <code>FP</code> و ۱ <code>FN</code>) داشته است.
+                    </td>
+                    <td>مفهوم: Confusion Matrix (ماتریس درهم‌ریختگی)</td>
+                </tr>
+
+                <!-- نتیجه: انتخاب معیار مناسب -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> هیچ معیار واحدی برای همه مسائل بهترین نیست.<br>
+                        - داده متوازن است؟ → <code>Accuracy</code>.<br>
+                        - نباید بیمار از دست برود؟ → <code>Recall</code>.<br>
+                        - نباید فرد سالم را بیمار اعلام کنیم؟ → <code>Precision</code>.<br>
+                        - تعادل بین هر دو؟ → <code>F1-score</code>.<br>
+                        - داده نامتعادل است؟ → <code>Balanced Accuracy</code>.<br>
+                        - جزئیات خطاها؟ → <code>Confusion Matrix</code>.
+                    </td>
+                    <td>نتیجه: راهنمای انتخاب معیار ارزیابی</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
 </body>
 </html>

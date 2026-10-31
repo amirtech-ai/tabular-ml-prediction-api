@@ -1,7 +1,17 @@
-pandas
-numpy
-scikit-learn
-fastapi
-uvicorn
-pytest
-jupyter
+# Core Data Science & ML Libraries
+pandas==3.0.6
+numpy==2.5.4
+scikit-learn==1.9.1
+joblib==1.6.0
+
+# Jupyter (For Notebooks)
+jupyter==1.1.1
+notebook==7.6.3
+ipykernel==7.4.0
+
+# API (For Future API Development)
+fastapi==0.143.3
+uvicorn==0.54.0
+
+# Testing (For Future Unit Tests)
+pytest==9.1.1
