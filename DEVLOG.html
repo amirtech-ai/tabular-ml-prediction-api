@@ -87,7 +87,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>سه شنبه 1405/7/21</th>
+                    <th>سه شنبه 1405/7/26</th>
                     <th>سوالات ثابت</th>
                 </tr>
             </thead>
@@ -231,7 +231,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>پنجشنبه 1405/7/26</th>
+                    <th>پنجشنبه 1405/7/23</th>
                     <th>سوالات ثابت</th>
                 </tr>
             </thead>
@@ -366,7 +366,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>جمعه 1405/7/28</th>
+                    <th>جمعه 1405/7/24</th>
                     <th>سوالات ثابت</th>
                 </tr>
             </thead>
@@ -563,6 +563,255 @@
             </tbody>
         </table>
     </div>
-    
+        <!-- ============================================== -->
+    <!-- جدول پنجم (شنبه 1405/7/29) - جدید -->
+
+        <!-- ============================================== -->
+    <!-- جدول پنجم (شنبه) - جدید -->
+    <!-- ============================================== -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>شنبه 1405/7/25</th>
+                    <th>سوالات ثابت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- مفهوم 1: Refactoring -->
+                <tr>
+                    <td>
+                        <strong>مفهوم:</strong> چرا کدها را از <code>.ipynb</code> به فایل‌های <code>.py</code> منتقل کردیم؟<br>
+                        <strong>پاسخ:</strong> فایل‌های <code>.ipynb</code> برای آزمایش و تحلیل اکتشافی عالی هستند، اما برای محیط <code>Production</code> (مثل <code>API</code>) مناسب نیستند. فایل‌های <code>.py</code> در پوشه <code>/src</code> باعث می‌شوند کدها ماژولار، قابل تست و قابل اتوماسیون شوند.
+                    </td>
+                    <td>مفهوم: Refactoring (انتقال کد به Production)</td>
+                </tr>
+
+                <!-- مفهوم 2: Joblib vs Pickle -->
+                <tr>
+                    <td>
+                        <strong>مفهوم:</strong> تفاوت <code>joblib</code> و <code>pickle</code> برای ذخیره مدل چیست؟<br>
+                        <strong>پاسخ:</strong> هر دو برای ذخیره مدل استفاده می‌شوند، اما <code>joblib</code> برای مدل‌های <code>scikit-learn</code> بهینه‌تر است (مخصوصاً برای مدل‌های حجیم حاوی آرایه‌های <code>numpy</code>). همچنین <code>joblib</code> سریع‌تر فایل‌های حجیم را ذخیره و بارگذاری می‌کند.
+                    </td>
+                    <td>مفهوم: تفاوت joblib و pickle</td>
+                </tr>
+
+                <!-- مفهوم 3: Path Independence -->
+                <tr>
+                    <td>
+                        <strong>مفهوم:</strong> چرا از <code>Path(__file__).resolve().parent.parent</code> استفاده کردیم؟<br>
+                        <strong>پاسخ:</strong> برای اینکه مسیر فایل‌ها (مثل مسیر ذخیره مدل) مستقل از پوشه‌ای باشد که ترمینال در آن باز است. این کار باعث می‌شود کد در هر سیستم‌عاملی و از هر مسیری به درستی اجرا شود.
+                    </td>
+                    <td>مفهوم: مسیرهای مستقل از پوشه ترمینال</td>
+                </tr>
+
+                <!-- مفهوم 4: Copy in DataFrame -->
+                <tr>
+                    <td>
+                        <strong>مفهوم:</strong> چرا از <code>dataset.frame.copy()</code> استفاده کردیم؟<br>
+                        <strong>پاسخ:</strong> برای جلوگیری از تغییر ناخواسته داده‌ی اصلی (<code>dataset.frame</code>). در <code>pandas</code>، اگر کپی نکنیم، هر تغییری در <code>df</code> روی داده اصلی هم اثر می‌گذارد (چون هر دو به یک شیء در حافظه اشاره می‌کنند).
+                    </td>
+                    <td>مفهوم: استفاده از .copy() برای جلوگیری از تغییر داده اصلی</td>
+                </tr>
+
+                <!-- خطا 1: NameError X_test -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> بعد از بستن و باز کردن <code>VS Code</code> و اجرای فقط سلول آخر نوتبوک، خطای <code>NameError: name 'X_test' is not defined</code> گرفتم.<br>
+                        <strong>علت:</strong> با بستن <code>VS Code</code>، حافظه موقت (RAM) پاک می‌شود. متغیر <code>X_test</code> فقط در حافظه موقت وجود دارد و روی فایل ذخیره نمی‌شود.<br>
+                        <strong>راه‌حل:</strong> باید سلول‌های تعریف <code>X</code> و <code>y</code> و تقسیم داده را دوباره اجرا می‌کردم. یا از یک فایل داده جدید استفاده می‌کردم.<br>
+                        <strong>نتیجه:</strong> یاد گرفتم که فایل <code>.pkl</code> فقط مدل را ذخیره می‌کند، نه داده‌ها را.
+                    </td>
+                    <td>خطا: NameError به دلیل پاک شدن حافظه</td>
+                </tr>
+
+                <!-- خطا 2: Inplace Modification -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> فکر می‌کردم اگر <code>df</code> را تغییر دهم، داده اصلی (<code>dataset</code>) تغییری نمی‌کند.<br>
+                        <strong>علت:</strong> در پایتون، متغیرهای شیء‌گرا (مثل <code>DataFrame</code>) به صورت <code>Reference</code> (ارجاع) پاس داده می‌شوند، نه <code>Value</code> (مقدار).<br>
+                        <strong>راه‌حل:</strong> با استفاده از <code>.copy()</code> یک نسخه‌ی مستقل ساختم.<br>
+                        <strong>نتیجه:</strong> داده اصلی همیشه سالم می‌ماند.
+                    </td>
+                    <td>بدفهمی: ارجاع (Reference) در پایتون</td>
+                </tr>
+
+                <!-- خطا 3: Expected Output of Asserts -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> فکر می‌کردم دستور <code>assert</code> باید خروجی چاپ کند.<br>
+                        <strong>علت:</strong> با رفتار <code>assert</code> آشنا نبودم.<br>
+                        <strong>راه‌حل:</strong> یاد گرفتم که <code>assert</code> اگر شرطش درست باشد، هیچ خروجی نمی‌دهد (سکوت = موفقیت).<br>
+                        <strong>نتیجه:</strong> درک صحیح از <code>assert</code>.
+                    </td>
+                    <td>مفهوم: خروجی دستور assert</td>
+                </tr>
+
+                <!-- نتیجه 1: Training Execution -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> دستور <code>python -m src.train</code> با موفقیت اجرا شد.<br>
+                        <strong>خروجی:</strong> پیام‌های <code>Baseline Accuracy: 0.6228</code>، <code>Model Accuracy: 0.9825</code> و ... چاپ شدند.<br>
+                        <strong>تحلیل:</strong> مسیر آموزش مستقل از نوتبوک کار می‌کند.
+                    </td>
+                    <td>نتیجه: اجرای موفق آموزش مستقل</td>
+                </tr>
+
+                <!-- نتیجه 2: Model Artifact -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> فایل مدل در مسیر <code>artifacts/model.joblib</code> ذخیره شد.<br>
+                        <strong>تحلیل:</strong> کل <code>Pipeline</code> (شامل <code>StandardScaler</code> و <code>LogisticRegression</code>) ذخیره شده است.
+                    </td>
+                    <td>نتیجه: ذخیره موفق Pipeline</td>
+                </tr>
+
+                <!-- نتیجه 3: Prediction Consistency -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> پیش‌بینی‌های مدل قبل از ذخیره و بعد از بارگذاری دقیقاً یکسان بودند.<br>
+                        <strong>خروجی:</strong> <code>Are they identical? True</code><br>
+                        <strong>تحلیل:</strong> ذخیره و بارگذاری، عملکرد مدل را تغییر نمی‌دهد.
+                    </td>
+                    <td>نتیجه: تست یکسان بودن پیش‌بینی‌ها</td>
+                </tr>
+
+                <!-- نتیجه 4: Invalid Input Handling -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> تابع <code>predict</code> ورودی نامعتبر (تعداد ویژگی‌های کمتر از ۳۰) را با خطای <code>ValueError</code> رد کرد.<br>
+                        <strong>خروجی:</strong> <code>Expected 30 features, but got 5.</code><br>
+                        <strong>تحلیل:</strong> مدل در برابر ورودی اشتباه محافظت شده است.
+                    </td>
+                    <td>نتیجه: تست ورودی نامعتبر</td>
+                </tr>
+
+                <!-- اقدام بعدی -->
+                <tr>
+                    <td>
+                        <strong>اقدام بعدی:</strong><br>
+                        - ساخت <code>API</code> با <code>FastAPI</code> برای پیش‌بینی.<br>
+                        - نوشتن تست‌های خودکار در پوشه <code>/tests</code>.<br>
+                        - به‌روزرسانی <code>README.md</code> با وضعیت واقعی پروژه.<br>
+                        - بررسی نهایی <code>Git</code> و ثبت تغییرات.
+                    </td>
+                    <td>اقدامات باقی‌مانده برای هفته آینده</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- ============================================== -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>یک شنبه 1405/7/26</th>
+                    <th>سوالات ثابت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- خطای 1: NameError -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> هنگام اجرای سلول آخر نوتبوک (بارگذاری مدل و پیش‌بینی) با خطای <code>NameError: name 'X_test' is not defined</code> مواجه شدم.<br>
+                        <strong>علت:</strong> پس از بستن و باز کردن <code>VS Code</code>، حافظه‌ی موقت پایتون (RAM) پاک شده بود و متغیر <code>X_test</code> در حافظه وجود نداشت.<br>
+                        <strong>بررسی:</strong> متوجه شدم که فایل <code>.pkl</code> فقط مدل را ذخیره می‌کند و داده‌ها را ذخیره نمی‌کند.<br>
+                        <strong>راه‌حل:</strong> یاد گرفتم که قبل از اجرای سلول پیش‌بینی، باید سلول‌های بارگذاری داده و تقسیم داده را دوباره اجرا کنم (یا داده‌ی جدید را مستقیماً به مدل بدهم).<br>
+                        <strong>نتیجه:</strong> درک صحیح از نحوه‌ی کار حافظه در نوتبوک‌ها و تفاوت آن با اسکریپت‌های پایتون.
+                    </td>
+                    <td>خطا: NameError (X_test is not defined) در سلول آخر</td>
+                </tr>
+
+                <!-- سوال 1: چرا باید از .copy() استفاده کنیم؟ -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> چرا باید از <code>dataset.frame.copy()</code> استفاده کنیم و کپی بگیریم؟<br>
+                        <strong>پاسخ:</strong> استفاده از <code>.copy()</code> یک عادت حرفه‌ای است. اگر کپی نگیریم، هر تغییری (مثل حذف ستون) روی داده اصلی (شیء <code>dataset</code>) هم اثر می‌گذارد و باعث خرابی داده‌های مرجع می‌شود. با کپی، داده اصلی سالم می‌ماند.
+                    </td>
+                    <td>سوال: دلیل استفاده از .copy() در بارگذاری داده</td>
+                </tr>
+
+                <!-- مفهوم 1: Endpoint -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> مفهوم <code>Endpoint</code> در API چیست؟<br>
+                        <strong>پاسخ:</strong> آدرس و عملیاتی که سرویس در اختیار مصرف‌کننده قرار می‌دهد. مثلاً <code>POST /api/v1/predict/</code> یعنی ارسال درخواست برای پیش‌بینی، و <code>GET /health/</code> یعنی بررسی سلامت سرویس.
+                    </td>
+                    <td>مفهوم: Endpoint (نقطه پایانی)</td>
+                </tr>
+
+                <!-- مفهوم 2: HTTP Status Codes -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> کدهای وضعیت HTTP (<code>HTTP Status Codes</code>) چه هستند؟<br>
+                        <strong>پاسخ:</strong> <code>200</code> برای موفقیت، <code>400</code> برای درخواست نامعتبر (مثلاً داده اشتباه)، و <code>500</code> برای خطای داخلی سرور (مثلاً مدل بارگذاری نشده). این کدها به کلاینت می‌گویند درخواستش چه سرنوشتی پیدا کرده است.
+                    </td>
+                    <td>مفهوم: HTTP Status Codes</td>
+                </tr>
+
+                <!-- مفهوم 3: Model Persistence -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> چرا در <code>API</code> باید مدل را ذخیره و دوباره بارگذاری کنیم و هر بار آموزش ندهیم؟<br>
+                        <strong>پاسخ:</strong> این مفهوم <code>Model Persistence</code> نام دارد. آموزش مدل زمان‌بر است. در <code>API</code>، مدل را یک بار در زمان شروع سرویس بارگذاری می‌کنیم (نه در هر درخواست) تا پاسخ‌دهی سریع باشد و منابع هدر نرود.
+                    </td>
+                    <td>مفهوم: Model Persistence (ماندگاری مدل)</td>
+                </tr>
+
+                <!-- مفهوم 4: Validation -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> چرا در <code>API</code> به <code>Validation</code> (اعتبارسنجی) نیاز داریم؟<br>
+                        <strong>پاسخ:</strong> برای کنترل ساختار، نوع، تعداد و مقادیر ورودی **قبل از اجرای مدل**. اگر کاربر داده‌ی اشتباه (مثل متن به جای عدد یا ۲۹ ویژگی به جای ۳۰) بفرستد، باید با خطای <code>400</code> رد شود، نه اینکه مدل اجرا شود و خطای داخلی بدهد.
+                    </td>
+                    <td>مفهوم: Validation (اعتبارسنجی ورودی)</td>
+                </tr>
+
+                <!-- مفهوم 5: Serializer -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> <code>Serializer</code> در Django REST Framework چه کاری انجام می‌دهد؟<br>
+                        <strong>پاسخ:</strong> وظیفه‌ی اعتبارسنجی داده‌های ورودی و تبدیل داده‌های پیچیده (مثل آبجکت‌های پایتون) به فرمت <code>JSON</code> (و برعکس) را بر عهده دارد. این ابزار دقیقاً همان <code>Validation</code> را برای ما پیاده‌سازی می‌کند.
+                    </td>
+                    <td>مفهوم: Serializer در DRF</td>
+                </tr>
+
+                <!-- مفهوم 6: مدیریت خطا -->
+                <tr>
+                    <td>
+                        <strong>مفهوم:</strong> مدیریت خطا در API چگونه باید باشد؟<br>
+                        <strong>پاسخ:</strong> از یک <code>except Exception</code> بزرگ برای پنهان‌کردن همه خطاها استفاده نکنید. خطاهای قابل پیش‌بینی (مثل ورودی نامعتبر) را با <code>400</code> و پیام واضح مدیریت کنید. برای خطاهای داخلی، فقط یک پیام عمومی <code>500</code> برگردانید و جزئیات (<code>Traceback</code>) را فقط در لاگ سمت سرور ثبت کنید تا اطلاعات حساس لو نرود.
+                    </td>
+                    <td>مفهوم: مدیریت خطا در API</td>
+                </tr>
+
+                <!-- اقدام 1: ساخت API -->
+                <tr>
+                    <td>
+                        <strong>اقدام:</strong> ساخت <code>API</code> با <code>Django REST Framework</code>.<br>
+                        <strong>جزئیات:</strong> پروژه‌ی Django ساخته شد، اپلیکیشن <code>prediction</code> ایجاد شد و مسیرهای <code>/api/v1/health/</code> و <code>/api/v1/predict/</code> تعریف شدند. مدل در زمان شروع سرویس بارگذاری می‌شود (نه در هر درخواست).
+                    </td>
+                    <td>اقدام: پیاده‌سازی Endpointهای API</td>
+                </tr>
+
+                <!-- اقدام 2: تست با APIClient -->
+                <tr>
+                    <td>
+                        <strong>اقدام:</strong> نوشتن تست‌های اولیه برای <code>API</code>.<br>
+                        <strong>جزئیات:</strong> از ابزار <code>APIClient</code> برای تست درخواست‌های معتبر، ورودی‌های نامعتبر (مثل <code>NaN</code>، <code>Infinity</code>، فیلد مفقود، ویژگی اضافی، JSON نامعتبر) و همچنین بررسی رفتار سیستم در صورت نبود مدل استفاده شد.
+                    </td>
+                    <td>اقدام: نوشتن تست‌های اولیه API</td>
+                </tr>
+
+                <!-- نتیجه: وضعیت فعلی -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> <code>API</code> در حال حاضر قادر است مدل را بارگذاری کند، ورودی‌ها را اعتبارسنجی کند، پیش‌بینی را انجام دهد و خروجی ساخت‌یافته برگرداند. مدیریت خطا برای سناریوهای اصلی پیاده‌سازی شده است. (هنوز تست‌ها به طور کامل اجرا نشده‌اند و مستندات <code>README</code> و <code>DEVLOG</code> نیاز به به‌روزرسانی دارند).
+                    </td>
+                    <td>نتیجه: وضعیت فعلی API و اقدامات باقی‌مانده</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

@@ -231,3 +231,86 @@ Refactor the training workflow and persist the trained pipeline.
 - **Leads followed up:** (این بخش را بر اساس تحقیقات بازار خودتان پر کنید. مثلاً: ۳ مشتری بالقوه در حوزه پردازش اسناد شناسایی شد).
 - **Customer workflow insights:** (مثلاً: مشتریان فعلاً از اکسل برای دسته‌بندی اسناد استفاده می‌کنند و زمان زیادی صرف می‌کنند).
 - **Next action:** (مثلاً: تماس با مشتری اول برای انجام مصاحبه در روزهای آینده).
+
+
+
+## API (In Progress)
+
+The project includes a Django REST Framework API to serve the trained model. 
+
+### Endpoints
+- **`GET /api/v1/health/`**
+  - **Description:** Checks if the service and the model are loaded and ready.
+  - **Response:** `{"status": "ok", "message": "Service is running."}` (HTTP 200)
+
+- **`POST /api/v1/predict/`**
+  - **Description:** Validates input and returns a prediction.
+  - **Request Format:** JSON object with exactly 30 numerical features (matching the dataset).
+  - **Response Format:** `{"status": "success", "prediction": 1, "probabilities": {"malignant": 0.1, "benign": 0.9}}` (HTTP 200)
+  - **Errors:**
+    - `400 Bad Request`: Invalid JSON, missing fields, extra fields, non-numeric values, NaN/Infinity.
+    - `500 Internal Server Error`: Model not loaded or internal prediction error.
+
+### Prerequisites & Installation
+Ensure you have the required packages installed:
+```bash
+pip install -r requirements.txt
+Running the Service
+To start the Django API server, run:
+
+bash
+python manage.py runserver
+Running Tests
+To run the API tests, use:
+
+bash
+python manage.py test prediction
+Limitations
+This API is for educational purposes only.
+
+It is not intended for medical diagnosis or clinical use.
+
+The model is trained on the Breast Cancer Wisconsin dataset and should not be used with other data without retraining.
+
+text
+
+---
+
+### ۲. به‌روزرسانی فایل `DEVLOG.md`
+
+این متن را به انتهای فایل `DEVLOG.md` خود اضافه کنید:
+
+```markdown
+## تاریخ: 1405/07/27 (روز پنجم - جمعه)
+
+### ۱. چه فایل‌هایی تغییر کرده‌اند؟
+- ساختار جدید `Django` (شامل `manage.py`، پوشه‌ی `api/` و اپلیکیشن `prediction/`).
+- فایل‌های `prediction/constants.py`، `prediction/serializers.py`، `prediction/views.py` و `prediction/urls.py`.
+- فایل `api/urls.py` و `api/settings.py`.
+- فایل `requirements.txt` (اضافه شدن `django` و `djangorestframework`).
+
+### ۲. چه چیزی واقعاً اجرا شده است؟
+- سرور `Django` با دستور `python manage.py runserver` اجرا شده است.
+- مسیر سلامت (`/api/v1/health/`) با موفقیت پاسخ داده است.
+- `Endpoint` پیش‌بینی (`/api/v1/predict/`) پیاده‌سازی شده و مدل ذخیره‌شده در `artifacts/model.joblib` را بارگذاری می‌کند.
+- اعتبارسنجی ورودی (با `Serializer`) پیاده‌سازی شده است.
+
+### ۳. کدام تست‌ها پاس شده‌اند؟
+- **(اگر تست‌ها را اجرا کرده‌اید، این بخش را با نتایج واقعی خود پر کنید. مثلاً:)** 
+- `test_health_check_success`: پاس شد.
+- `test_predict_valid_input`: پاس شد.
+- `test_predict_empty_body`: پاس شد.
+- `test_predict_missing_feature`: پاس شد.
+- `test_predict_non_numeric_value`: پاس شد.
+- *(اگر هنوز تست‌ها را اجرا نکرده‌اید، بنویسید: تست‌های خودکار هنوز اجرا نشده‌اند.)*
+
+### ۴. چه خطاهایی باقی مانده‌اند؟
+- **(اگر خطایی وجود ندارد، بنویسید:)** خطای فنی فعالی در `API` مشاهده نمی‌شود.
+- **(اگر خطایی داشتید، مثلاً:)** در ابتدا خطای `Model not loaded` دریافت کردم که با اصلاح مسیر `MODEL_PATH` برطرف شد. 
+
+### ۵. اولین اقدام روز بعد چیست؟
+- تکمیل و اجرای کامل تست‌های `API`.
+- تست `API` با ابزارهایی مثل `curl` یا `Postman` از خارج از سرور (تست واقعی).
+- بررسی و بهبود مدیریت خطاها (مخصوصاً سناریوهای داخلی).
+- به‌روزرسانی `README` و مستندات.
+- **اقدام بازار:** تماس با ۳ مشتری بالقوه برای اعتبارسنجی مشکل (مطابق برنامه هفته اول).
