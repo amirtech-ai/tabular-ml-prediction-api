@@ -979,5 +979,185 @@
             </tbody>
         </table>
     </div>
+        <!-- ============================================== -->
+    <!-- جدول هفتم (چهارشنبه 1405/7/30) - جدید -->
+    <!-- ============================================== -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>چهارشنبه 1405/7/30</th>
+                    <th>سوالات ثابت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- مفهوم 1: Cross-validation -->
+                <tr>
+                    <td>
+                        <strong>مفهوم:</strong> <code>Cross-validation</code> (اعتبارسنجی متقابل) چیست؟<br>
+                        <strong>پاسخ:</strong> روشی برای ارزیابی پایدارتر مدل. داده آموزش به چند بخش (Fold) تقسیم می‌شود. مدل چند بار آموزش می‌بیند و هر بار یک بخش برای اعتبارسنجی کنار گذاشته می‌شود. میانگین نتایج، تصویر واقعی‌تری از عملکرد مدل می‌دهد.
+                    </td>
+                    <td>مفهوم: Cross-validation</td>
+                </tr>
+
+                <!-- مفهوم 2: تفاوت Cross-validation با Test Set -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> تفاوت <code>Cross-validation</code> با <code>Test Set</code> چیست؟<br>
+                        <strong>پاسخ:</strong> <code>Test Set</code> فقط <strong>یک بار</strong> و در پایان کار برای ارزیابی نهایی استفاده می‌شود. اما <code>Cross-validation</code> روی داده آموزش انجام می‌شود و برای انتخاب مدل و ارزیابی پایدارتر به کار می‌رود. استفاده مکرر از <code>Test Set</code> باعث <code>Data Leakage</code> می‌شود.
+                    </td>
+                    <td>مفهوم: تفاوت Cross-validation و Test Set</td>
+                </tr>
+
+                <!-- مفهوم 3: StratifiedKFold -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> چرا از <code>StratifiedKFold</code> استفاده کردیم؟<br>
+                        <strong>پاسخ:</strong> چون داده‌های ما نامتعادل هستند (۶۲.۷۴٪ کلاس ۱ و ۳۷.۲۶٪ کلاس ۰). <code>StratifiedKFold</code> تضمین می‌کند که نسبت کلاس‌ها در هر Fold دقیقاً حفظ شود تا ارزیابی عادلانه باشد.
+                    </td>
+                    <td>مفهوم: StratifiedKFold</td>
+                </tr>
+
+                <!-- مفهوم 4: F1 Macro -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> معیار <code>F1 Macro</code> چیست؟<br>
+                        <strong>پاسخ:</strong> میانگین ساده <code>F1-score</code> دو کلاس (با وزن برابر). برخلاف <code>Accuracy</code> که در داده‌های نامتعادل گمراه‌کننده است، <code>F1 Macro</code> عملکرد مدل را روی هر دو کلاس به یک اندازه مهم می‌داند.
+                    </td>
+                    <td>مفهوم: F1 Macro</td>
+                </tr>
+
+                <!-- مفهوم 5: Balanced Accuracy -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> معیار <code>Balanced Accuracy</code> چیست؟<br>
+                        <strong>پاسخ:</strong> میانگین <code>Recall</code> هر دو کلاس (مثبت و منفی). در داده‌های نامتعادل، تصویر واقعی‌تری از عملکرد مدل ارائه می‌دهد. اگر مدل فقط کلاس اکثریت را پیش‌بینی کند، <code>Balanced Accuracy</code> آن ۵۰٪ خواهد بود (نه ۶۲٪).
+                    </td>
+                    <td>مفهوم: Balanced Accuracy</td>
+                </tr>
+
+                <!-- مفهوم 6: Validation Folds -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> نقش <code>Validation Folds</code> در <code>Cross-validation</code> چیست؟<br>
+                        <strong>پاسخ:</strong> بخش‌هایی از داده آموزش هستند که در هر تکرار <code>Cross-validation</code> برای اعتبارسنجی مدل استفاده می‌شوند. این‌ها با <code>Test Set</code> فرق دارند؛ <code>Test Set</code> برای ارزیابی نهایی و مستقل است.
+                    </td>
+                    <td>مفهوم: Validation Folds</td>
+                </tr>
+
+                <!-- نتیجه 1: Cross-validation Results -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> <code>Cross-validation</code> با <code>StratifiedKFold</code> (۵ فولد) روی داده آموزش اجرا شد.<br>
+                        <strong>خروجی واقعی:</strong> 
+                        <code>Accuracy: Mean = 0.9780, Std = 0.0098</code><br>
+                        <code>Balanced Accuracy: Mean = 0.9798, Std = 0.0129</code><br>
+                        <code>F1 Macro: Mean = 0.9825, Std = 0.0078</code><br>
+                        <strong>تحلیل:</strong> انحراف معیارهای بسیار کم نشان می‌دهد مدل پایدار است و به تقسیم داده حساس نیست.
+                    </td>
+                    <td>نتیجه: نتایج Cross-validation</td>
+                </tr>
+
+                <!-- نتیجه 2: Final Evaluation on Test Set -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> ارزیابی نهایی روی <code>Test Set</code> انجام شد.<br>
+                        <strong>خروجی واقعی:</strong> 
+                        <code>Accuracy: 0.9825 (98.25%)</code><br>
+                        <code>Balanced Accuracy: 0.9815 (98.15%)</code><br>
+                        <code>F1 Macro: 0.9825 (98.25%)</code><br>
+                        <strong>تحلیل:</strong> مدل در هر دو کلاس عملکرد بسیار خوبی دارد.
+                    </td>
+                    <td>نتیجه: ارزیابی نهایی روی Test Set</td>
+                </tr>
+
+                <!-- نتیجه 3: Comparison with Baseline -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> مقایسه با <code>Baseline</code> (DummyClassifier) انجام شد.<br>
+                        <strong>خروجی واقعی:</strong> 
+                        <code>Baseline Accuracy: 0.6228</code> vs <code>Model Accuracy: 0.9825</code><br>
+                        <code>Baseline Balanced Accuracy: 0.5000</code> vs <code>Model Balanced Accuracy: 0.9815</code><br>
+                        <code>Baseline F1 Macro: 0.3839</code> vs <code>Model F1 Macro: 0.9825</code><br>
+                        <strong>تحلیل:</strong> مدل در تمام معیارها از <code>Baseline</code> بسیار بهتر است. <code>Balanced Accuracy</code> برای <code>Baseline</code> برابر ۰.۵ است (چون همیشه یک کلاس را پیش‌بینی می‌کند).
+                    </td>
+                    <td>نتیجه: مقایسه با Baseline</td>
+                </tr>
+
+                <!-- نتیجه 4: Confusion Matrix (Updated) -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> <code>Confusion Matrix</code> جدید (پس از ارزیابی نهایی) به شکل زیر است:<br>
+                        <code>[[41, 1], [1, 71]]</code><br>
+                        <strong>تحلیل:</strong> ۴۱ نمونه <code>TN</code>، ۱ نمونه <code>FP</code>، ۱ نمونه <code>FN</code>، ۷۱ نمونه <code>TP</code>.<br>
+                        <strong>نکته:</strong> این ماتریس با ماتریس قبلی (<code>[[37, 1], [1, 75]]</code>) تفاوت دارد چون اعداد دقیق‌تر و به‌روزتر شده‌اند.
+                    </td>
+                    <td>نتیجه: ماتریس درهم‌ریختگی به‌روز شده</td>
+                </tr>
+
+                <!-- نتیجه 5: Error Analysis -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> تحلیل خطاها انجام شد.<br>
+                        <strong>خروجی واقعی:</strong> ۲ خطا از ۱۱۴ نمونه (۱ <code>FP</code> و ۱ <code>FN</code>).<br>
+                        <strong>تحلیل:</strong> با تنها ۲ خطا، نمی‌توان الگوی قابل اتکایی پیدا کرد. احتمالاً این نمونه‌ها در مرز تصمیم‌گیری (<code>Decision Boundary</code>) قرار دارند. مدل در هر دو کلاس عملکرد متعادلی دارد.
+                    </td>
+                    <td>نتیجه: تحلیل خطاها</td>
+                </tr>
+
+                <!-- خطا 1: مخلوط کردن اعداد قدیمی و جدید -->
+                <tr>
+                    <td>
+                        <strong>خطا (بدفهمی):</strong> در ابتدا اعداد <code>Confusion Matrix</code> قدیمی (<code>[[37, 1], [1, 75]]</code>) را با نتایج جدید (<code>[[41, 1], [1, 71]]</code>) مخلوط کردم.<br>
+                        <strong>علت:</strong> متوجه نشدم که تغییر در نحوه محاسبه (استفاده از <code>Balanced Accuracy</code> و <code>Cross-validation</code>) باعث تغییر اعداد می‌شود.<br>
+                        <strong>راه‌حل:</strong> یاد گرفتم که برای هر نسخه از ارزیابی، یک گزارش جداگانه (<code>first_model_evaluation.md</code> و <code>second_model_evaluation.md</code>) بسازم تا اعداد با هم قاطی نشوند.<br>
+                        <strong>نتیجه:</strong> درک صحیح از اهمیت حفظ تاریخچه و سازگاری گزارش‌ها.
+                    </td>
+                    <td>خطا: مخلوط کردن اعداد قدیمی و جدید</td>
+                </tr>
+
+                <!-- خطا 2: فراموش کردن اجرای مجدد سلول‌ها -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> بعد از بستن و باز کردن <code>VS Code</code>، فقط سلول آخر را اجرا کردم و خطای <code>NameError: name 'X_test' is not defined</code> گرفتم.<br>
+                        <strong>علت:</strong> با بستن <code>VS Code</code>، حافظه موقت پاک می‌شود و متغیرها از بین می‌روند.<br>
+                        <strong>راه‌حل:</strong> باید قبل از اجرای سلول پیش‌بینی، سلول‌های بارگذاری داده و تقسیم داده را دوباره اجرا کنم (یا از یک فایل داده جدید استفاده کنم).<br>
+                        <strong>نتیجه:</strong> درک صحیح از نحوه کار حافظه در نوتبوک‌ها.
+                    </td>
+                    <td>خطا: NameError (X_test is not defined)</td>
+                </tr>
+
+                <!-- اقدام 1: ساخت فایل evaluation.py -->
+                <tr>
+                    <td>
+                        <strong>اقدام:</strong> فایل <code>src/evaluation.py</code> ساخته شد.<br>
+                        <strong>جزئیات:</strong> این فایل برای اجرای <code>Cross-validation</code>، ارزیابی نهایی، مقایسه با <code>Baseline</code> و تحلیل خطاها طراحی شده است. هدف این بود که کدهای ارزیابی از فایل تست‌ها (<code>tests.py</code>) جدا شوند.
+                    </td>
+                    <td>اقدام: ساخت فایل evaluation.py</td>
+                </tr>
+
+                <!-- اقدام 2: ساخت فایل‌های گزارش جدید -->
+                <tr>
+                    <td>
+                        <strong>اقدام:</strong> فایل‌های گزارش جدید ساخته شدند.<br>
+                        <strong>جزئیات:</strong> <code>reports/second_model_evaluation.md</code> (گزارش جامع ارزیابی دوم) و <code>reports/error_analysis.md</code> (گزارش تحلیل خطاها) ایجاد شدند تا نتایج جدید با تاریخچه قبلی مخلوط نشوند.
+                    </td>
+                    <td>اقدام: ساخت گزارش‌های جدید</td>
+                </tr>
+
+                <!-- اقدام بعدی -->
+                <tr>
+                    <td>
+                        <strong>اقدام بعدی:</strong><br>
+                        - به‌روزرسانی <code>DEVLOG.md</code> با نتایج امروز.<br>
+                        - به‌روزرسانی <code>README.md</code> با وضعیت واقعی پروژه.<br>
+                        - بررسی درصد پوشش کد (<code>Code Coverage</code>) با ابزار <code>coverage.py</code>.<br>
+                        - ذخیره تغییرات در <code>Git</code> و <code>push</code> به <code>GitHub</code>.
+                    </td>
+                    <td>اقدامات باقی‌مانده برای فردا</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
