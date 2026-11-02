@@ -314,3 +314,44 @@ text
 - بررسی و بهبود مدیریت خطاها (مخصوصاً سناریوهای داخلی).
 - به‌روزرسانی `README` و مستندات.
 - **اقدام بازار:** تماس با ۳ مشتری بالقوه برای اعتبارسنجی مشکل (مطابق برنامه هفته اول).
+
+
+## تاریخ: 1405/07/28
+
+## Environment
+- **Python version:** 3.14.7 (طبق نسخه‌ی محیط مجازی شما)
+- **Test command:** `python manage.py test prediction`
+- **Test date:** 1405/07/28 (سه‌شنبه)
+
+## Results
+- **Total tests:** 21
+- **Passed:** 21
+- **Failed:** 0
+- **Skipped:** 0
+
+## Coverage of Scenarios
+- **Valid prediction:** ✅ Tested (`test_predict_valid_input`, `test_end_to_end_prediction`)
+- **Invalid input:** ✅ Tested (`test_predict_non_numeric_value`, `test_predict_nan_value`, `test_predict_infinity_value`, `test_predict_invalid_json`)
+- **Missing features:** ✅ Tested (`test_predict_missing_feature`, `test_all_features_required`)
+- **Model loading failure:** ✅ Tested (`test_predict_without_model`)
+- **Health endpoint:** ✅ Tested (`test_health_check_success`)
+- **End-to-end flow:** ✅ Tested (`test_end_to_end_prediction`)
+
+## Failures
+- **Observed behavior:** None (همه‌ی تست‌ها پاس شدند).
+- **Expected behavior:** N/A
+- **Root cause:** N/A
+- **Fix applied:** N/A
+- **Retest result:** N/A
+
+## Remaining Risks
+- **Untested scenarios:** 
+  - تست بارگذاری همزمان (Concurrency) در سناریوهای با ترافیک بالا.
+  - تست با داده‌های واقعی خارج از دیتاست Breast Cancer (مدل روی داده‌های دیگر ممکن است عملکرد متفاوتی داشته باشد).
+- **Known issues:** هیچ مشکل شناخته‌شده‌ای وجود ندارد.
+- **Release blockers:** برای انتشار در محیط واقعی (Production)، نیاز به بررسی امنیت، لاگ‌گیری پیشرفته و مانیتورینگ است.
+
+## Next Actions
+- [ ] افزودن تست‌های بارگذاری (Load Testing) با ابزارهایی مثل `Locust` یا `JMeter`.
+- [ ] بررسی پوشش کد (Code Coverage) با ابزار `coverage.py` (در حال حاضر درصد پوشش ادعا نشده است).
+- [ ] به‌روزرسانی مستندات `README.md` و `DEVLOG.md` با نتایج تست‌ها.

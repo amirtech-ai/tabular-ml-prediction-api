@@ -573,7 +573,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>شنبه 1405/7/25</th>
+                    <th>شنبه و یک شنبه 1405/7/25,26</th>
                     <th>سوالات ثابت</th>
                 </tr>
             </thead>
@@ -705,7 +705,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>یک شنبه 1405/7/26</th>
+                    <th>دو شنبه 1405/7/27</th>
                     <th>سوالات ثابت</th>
                 </tr>
             </thead>
@@ -809,6 +809,172 @@
                         <strong>نتیجه:</strong> <code>API</code> در حال حاضر قادر است مدل را بارگذاری کند، ورودی‌ها را اعتبارسنجی کند، پیش‌بینی را انجام دهد و خروجی ساخت‌یافته برگرداند. مدیریت خطا برای سناریوهای اصلی پیاده‌سازی شده است. (هنوز تست‌ها به طور کامل اجرا نشده‌اند و مستندات <code>README</code> و <code>DEVLOG</code> نیاز به به‌روزرسانی دارند).
                     </td>
                     <td>نتیجه: وضعیت فعلی API و اقدامات باقی‌مانده</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <!-- ============================================== -->
+    <!-- جدول ششم (سه شنبه 1405/7/28) - جدید -->
+    <!-- ============================================== -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>سه شنبه 1405/7/28</th>
+                    <th>سوالات ثابت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- مفهوم 1: تفاوت انواع تست -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> تفاوت <code>Unit Test</code>، <code>Integration Test</code> و <code>API Test</code> چیست؟<br>
+                        <strong>پاسخ:</strong> 
+                        <code>Unit Test</code> یک جزء کوچک (مثل یک تابع) را مستقل تست می‌کند.<br>
+                        <code>Integration Test</code> بررسی می‌کند چند جزء (مثل اعتبارسنجی و مدل) با هم درست کار می‌کنند.<br>
+                        <code>API Test</code> یک درخواست <code>HTTP</code> واقعی می‌فرستد و کد وضعیت، ساختار خروجی و رفتار خطا را بررسی می‌کند.
+                    </td>
+                    <td>مفهوم: تفاوت انواع تست</td>
+                </tr>
+
+                <!-- مفهوم 2: Fixture -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> <code>Fixture</code> چیست؟<br>
+                        <strong>پاسخ:</strong> داده یا وضعیت آماده‌ای که تست به آن نیاز دارد. مثلاً در کد ما، متغیر <code>VALID_INPUT</code> که یک دیکشنری با ۳۰ ویژگی معتبر است، یک <code>Fixture</code> است.
+                    </td>
+                    <td>مفهوم: Fixture در تست</td>
+                </tr>
+
+                <!-- مفهوم 3: Mock -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> <code>Mock</code> چیست و چرا استفاده می‌کنیم؟<br>
+                        <strong>پاسخ:</strong> یک جایگزین کنترل‌شده برای یک وابستگی است. مثلاً برای تست اینکه اگر فایل مدل وجود نداشت چه اتفاقی می‌افتد، بدون حذف فایل واقعی، با <code>@patch</code> مسیر مدل را به یک فایل غیرموجود تغییر می‌دهیم. این کار برای آزمودن «رفتار خطا» ضروری است.
+                    </td>
+                    <td>مفهوم: Mock در تست</td>
+                </tr>
+
+                <!-- مفهوم 4: Reproducibility -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> <code>Reproducibility</code> در تست یعنی چه؟<br>
+                        <strong>پاسخ:</strong> اجرای دوباره‌ی تست‌ها در شرایط یکسان باید نتایج قابل مقایسه بدهد. یعنی اگر یک تست پاس شد، همیشه پاس بماند (مگر اینکه کد تغییر کند). این کار با <code>Fixture</code>های ثابت و <code>random_state</code> تضمین می‌شود.
+                    </td>
+                    <td>مفهوم: Reproducibility در تست</td>
+                </tr>
+
+                <!-- مفهوم 5: Serializer -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> <code>Serializer</code> در Django REST Framework چه کاری انجام می‌دهد؟<br>
+                        <strong>پاسخ:</strong> وظیفه‌ی اعتبارسنجی داده‌های ورودی و تبدیل داده‌های پیچیده (مثل آبجکت‌های پایتون) به فرمت <code>JSON</code> (و برعکس) را بر عهده دارد. این ابزار دقیقاً همان <code>Validation</code> را برای ما پیاده‌سازی می‌کند.
+                    </td>
+                    <td>مفهوم: Serializer در DRF</td>
+                </tr>
+
+                <!-- مفهوم 6: مدیریت خطا در API -->
+                <tr>
+                    <td>
+                        <strong>مفهوم:</strong> مدیریت خطا در API چگونه باید باشد؟<br>
+                        <strong>پاسخ:</strong> از یک <code>except Exception</code> بزرگ برای پنهان‌کردن همه خطاها استفاده نکنید. خطاهای قابل پیش‌بینی (مثل ورودی نامعتبر) را با <code>400</code> و پیام واضح مدیریت کنید. برای خطاهای داخلی، فقط یک پیام عمومی <code>500</code> برگردانید و جزئیات (<code>Traceback</code>) را فقط در لاگ سمت سرور ثبت کنید تا اطلاعات حساس لو نرود.
+                    </td>
+                    <td>مفهوم: مدیریت خطا در API</td>
+                </tr>
+
+                <!-- مفهوم 7: APIClient -->
+                <tr>
+                    <td>
+                        <strong>سوال:</strong> <code>APIClient</code> چیست؟<br>
+                        <strong>پاسخ:</strong> ابزاری از <code>Django REST Framework</code> برای شبیه‌سازی درخواست‌های <code>GET</code> و <code>POST</code> بدون نیاز به اجرای سرور واقعی. این ابزار تست‌ها را بسیار سریع‌تر و قابل تکرارتر می‌کند.
+                    </td>
+                    <td>مفهوم: APIClient در DRF</td>
+                </tr>
+
+                <!-- اقدام 1: پیاده‌سازی API -->
+                <tr>
+                    <td>
+                        <strong>اقدام:</strong> پیاده‌سازی <code>API</code> با <code>Django REST Framework</code>.<br>
+                        <strong>جزئیات:</strong> پروژه‌ی Django ساخته شد، اپلیکیشن <code>prediction</code> ایجاد شد. مسیرهای <code>/api/v1/health/</code> و <code>/api/v1/predict/</code> تعریف شدند. مدل در زمان شروع سرویس بارگذاری می‌شود (نه در هر درخواست).
+                    </td>
+                    <td>اقدام: پیاده‌سازی Endpointهای API</td>
+                </tr>
+
+                <!-- اقدام 2: نوشتن تست‌ها -->
+                <tr>
+                    <td>
+                        <strong>اقدام:</strong> نوشتن ۲۱ تست خودکار در ۴ دسته.<br>
+                        <strong>جزئیات:</strong> 
+                        <strong>Unit Tests (۶ تست):</strong> بررسی <code>VALID_INPUT</code>، ویژگی اضافی، مقدار غیرعددی، <code>NaN</code> و <code>Infinity</code>.<br>
+                        <strong>API Tests (۹ تست):</strong> مسیر سلامت، ورودی معتبر، بدنه خالی، فیلد مفقود، ویژگی اضافی، مقادیر غیرعددی، <code>NaN</code>، <code>Infinity</code> و <code>JSON</code> نامعتبر.<br>
+                        <strong>Model Integrity (۳ تست):</strong> بارگذاری مدل، عدم آموزش مجدد، عدم وجود مدل.<br>
+                        <strong>End-to-End (۳ تست):</strong> مسیر کامل، ترتیب ویژگی‌ها، تک‌تک ویژگی‌ها.
+                    </td>
+                    <td>اقدام: نوشتن تست‌های خودکار</td>
+                </tr>
+
+                <!-- نتیجه: اجرای تست‌ها -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> با دستور <code>python manage.py test prediction</code>، مجموعاً ۲۱ تست اجرا شد.<br>
+                        <strong>خروجی واقعی:</strong> <code>Ran 21 tests in 0.095s — OK</code><br>
+                        <strong>تحلیل:</strong> تمام ۲۱ تست پاس شدند (۱۰۰٪ موفقیت). این یعنی <code>API</code> در برابر سناریوهای آزموده‌شده کاملاً سالم است.
+                    </td>
+                    <td>نتیجه: اجرای موفق تست‌ها</td>
+                </tr>
+
+                <!-- نتیجه: گزارش تست -->
+                <tr>
+                    <td>
+                        <strong>نتیجه:</strong> فایل <code>reports/test_report.md</code> با ساختار استاندارد ساخته شد.<br>
+                        <strong>محتوا:</strong> محیط، دستور اجرا، نتایج (۲۱ پاس، ۰ خطا)، پوشش سناریوها، ریسک‌های باقی‌مانده (تست بارگذاری، داده‌های خارج از دیتاست) و اقدامات بعدی.
+                    </td>
+                    <td>نتیجه: ثبت گزارش تست</td>
+                </tr>
+
+                <!-- خطای 1: NameError -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> بعد از بستن و باز کردن <code>VS Code</code> و اجرای فقط سلول آخر نوتبوک، خطای <code>NameError: name 'X_test' is not defined</code> گرفتم.<br>
+                        <strong>علت:</strong> با بستن <code>VS Code</code>، حافظه‌ی موقت پایتون (RAM) پاک می‌شود. متغیر <code>X_test</code> فقط در حافظه وجود دارد و روی فایل ذخیره نمی‌شود.<br>
+                        <strong>راه‌حل:</strong> قبل از اجرای سلول پیش‌بینی، باید سلول‌های بارگذاری داده و تقسیم داده را دوباره اجرا کنم (یا داده‌ی جدید را مستقیماً به مدل بدهم).<br>
+                        <strong>نتیجه:</strong> درک صحیح از نحوه‌ی کار حافظه در نوتبوک‌ها و تفاوت آن با اسکریپت‌های پایتون.
+                    </td>
+                    <td>خطا: NameError به دلیل پاک شدن حافظه</td>
+                </tr>
+
+                <!-- خطای 2: Data Leakage در برازش StandardScaler -->
+                <tr>
+                    <td>
+                        <strong>خطا:</strong> ممکن بود <code>StandardScaler</code> را روی کل دیتاست (قبل از تقسیم) برازش کنم.<br>
+                        <strong>علت:</strong> نمی‌دانستم که این کار باعث <code>Data Leakage</code> می‌شود.<br>
+                        <strong>راه‌حل:</strong> از <code>fit_transform</code> فقط روی <code>X_train</code> و از <code>transform</code> فقط روی <code>X_test</code> استفاده کردم.<br>
+                        <strong>نتیجه:</strong> از نشت اطلاعات جلوگیری شد.
+                    </td>
+                    <td>خطا: Data Leakage در استانداردسازی</td>
+                </tr>
+
+                <!-- خطای 3: Bad Interpretation of Mock -->
+                <tr>
+                    <td>
+                        <strong>خطا (بدفهمی):</strong> فکر می‌کردم برای تست خطای مدل باید فایل واقعی مدل را حذف کنم.<br>
+                        <strong>علت:</strong> با مفهوم <code>Mock</code> آشنا نبودم.<br>
+                        <strong>راه‌حل:</strong> یاد گرفتم که با <code>@patch</code> می‌توانم یک جایگزین مصنوعی برای مسیر مدل بسازم و خطا را کنترل‌شده ایجاد کنم، بدون اینکه به فایل واقعی آسیب بزنم.<br>
+                        <strong>نتیجه:</strong> درک صحیح از <code>Mock</code> و کاربرد آن در تست.
+                    </td>
+                    <td>مفهوم: Mock و شبیه‌سازی خطا</td>
+                </tr>
+
+                <!-- اقدام بعدی -->
+                <tr>
+                    <td>
+                        <strong>اقدام بعدی:</strong><br>
+                        - تست <code>API</code> با ابزارهایی مثل <code>Postman</code> یا <code>curl</code> از خارج از سرور (تست واقعی).<br>
+                        - به‌روزرسانی <code>README.md</code> و <code>DEVLOG.md</code> با وضعیت واقعی پروژه.<br>
+                        - بررسی درصد پوشش کد (<code>Code Coverage</code>) با ابزار <code>coverage.py</code>.<br>
+                        - ذخیره تغییرات در <code>Git</code> و <code>push</code> به <code>GitHub</code>.
+                    </td>
+                    <td>اقدامات باقی‌مانده برای فردا</td>
                 </tr>
             </tbody>
         </table>
