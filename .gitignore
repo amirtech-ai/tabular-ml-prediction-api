@@ -12,7 +12,7 @@ env/
 # Jupyter
 .ipynb_checkpoints/
 
-# Data
+# Data (فعلاً استفاده نمی‌شود، ولی برای آینده مفید است)
 data/*.csv
 data/*.xlsx
 
@@ -27,7 +27,7 @@ data/*.xlsx
 .DS_Store
 Thumbs.db
 
-# Models
-models/
+# Models (مدل ذخیره‌شده در پوشه artifacts)
+artifacts/
 *.pkl
 *.joblib

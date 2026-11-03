@@ -9,13 +9,9 @@ jupyter==1.1.1
 notebook==7.6.3
 ipykernel==7.4.0
 
-# API (For Future API Development)
-fastapi==0.143.3
-uvicorn==0.54.0
-
-# Testing (For Future Unit Tests)
-pytest==9.1.1
-
 #Django REST Framework
-django==6.1.2
-djangorestframework==3.18.3
+django>=4.0
+djangorestframework>=3.14
+
+
+
