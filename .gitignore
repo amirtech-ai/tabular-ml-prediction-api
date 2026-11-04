@@ -27,7 +27,8 @@ data/*.xlsx
 .DS_Store
 Thumbs.db
 
-# Models (مدل ذخیره‌شده در پوشه artifacts)
-artifacts/
-*.pkl
-*.joblib
+# Models (مدل‌های ذخیره‌شده در پوشه artifacts)
+artifacts/*.joblib
+artifacts/*.pkl
+# اما پوشه artifacts و فایل .gitkeep آن باید در گیت باشند
+!artifacts/.gitkeep
